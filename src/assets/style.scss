@@ -1,0 +1,8 @@
+@import 'styles/_variables.scss';
+@import '~bootstrap/scss/bootstrap-reboot.scss';
+@import '~bootstrap/scss/bootstrap-grid.scss';
+
+a {
+    text-decoration: none;
+    transition: 200ms ease;
+}
