@@ -1,105 +1,41 @@
 <template>
+  <i class="fi fi-rr-User"></i>
   <app-navbar></app-navbar>
   <router-view />
 </template>
 
 <style lang="scss">
-@import "@/assets/styles/_variables";
+$box-shadow: -3px 2px 5px 0px #d5d5d5;
+$marginSiize: 20px;
 
 html {
   padding: 0;
 }
 body {
   background: #cec7c7;
-  background-image: linear-gradient(209deg, #68072a, #080b1cfa);
+  // background-image: linear-gradient(117deg, #005dff, #ff2000);
+  background-image: linear-gradient(345deg, #e5f1c7 60%, #44d4cdad);
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: calc(100vh - $marginSiize);
   background-size: cover;
   margin: 0;
 }
 
 #app {
-  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #fff;
-  padding: 90px 0;
+
+  background: #fff;
+  margin: $marginSiize $marginSiize 0 $marginSiize;
+  border-radius: 10px;
+  height: calc(100vh - $marginSiize*2);
+  padding: 20px;
+  box-shadow: $box-shadow;
+
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    li {
-      list-style-type: none;
-      margin: 0 15px;
-      font-size: 1.5rem;
-      a {
-        padding: 0 10px;
-        color: $primary;
-        font-weight: 500;
-        display: block;
-        overflow: hidden;
-        // border-radius: 3px;
-        border: 1px solid #000;
-        position: relative;
-        transition: 200ms ease-in;
-        font-weight: 100;
-        z-index: 1;
-        transform: scale(1);
-        box-shadow: 2px 4px 2px 0px #000;
-        &:after {
-          opacity: 0;
-          content: "";
-          display: block;
-          height: 100%;
-          width: 100%;
-          background: $dark;
-          // border-radius: 3px;
-          position: absolute;
-          // box-shadow: -2px -1px 5px 0px #120310;
-          transition: 300ms ease-in;
-          top: 0;
-          left: 100%;
-          z-index: -1;
-        }
-
-        &:hover {
-          transform: scale(1.05);
-          &:after {
-            opacity: 1;
-            left: 70%;
-          }
-        }
-        &:active {
-          transform: scale(1);
-          box-shadow: 2px 4px 2px 0px #333;
-          &:after {
-            background: #333;
-          }
-        }
-
-        &.router-link-exact-active {
-          transform: scale(1.1);
-          color: $primary;
-          &::after {
-            opacity: 1;
-            left: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-a {
-  text-decoration: none;
-}
 </style>
 
 <script>
@@ -112,12 +48,11 @@ socket.on("connect", () => {
 });
 socket.on("users", (users) => {
   users.forEach((user) => {
-    console.log(user)
+    console.log(user);
   });
 });
 
 socket.on("user connected", (user) => {
-  initReactiveProperties(user);
   this.users.push(user);
 });
 
