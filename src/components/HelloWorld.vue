@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Hi world!</h1>
+    <h1>{{ msg }}</h1>
   </div>
 </template>
 
@@ -15,7 +15,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
   margin: 40px 0 0;
 }
 ul {

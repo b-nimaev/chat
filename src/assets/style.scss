@@ -2,8 +2,11 @@
 @import '~bootstrap/scss/bootstrap-reboot.scss';
 @import '~bootstrap/scss/bootstrap-grid.scss';
 @import '~bootstrap/scss/_type.scss';
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
 a {
     text-decoration: none;
     transition: 200ms ease;
+}
+body {
+    font-family: 'Poppins', sans-serif;
 }

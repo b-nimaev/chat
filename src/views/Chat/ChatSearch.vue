@@ -25,7 +25,7 @@
                     value="female"
                     v-model="gender"
                   />
-                  <label class="form-check-label checked" for="female">
+                  <label class="form-check-label" for="female">
                     Female
                   </label>
                 </div>
@@ -51,7 +51,7 @@
                     id="companion__female"
                     v-model="checked"
                   />
-                  <label class="form-check-label checked" for="companion__female">
+                  <label class="form-check-label" for="companion__female">
                     Female
                   </label>
                 </div>
@@ -60,7 +60,9 @@
           </div>
         </div>
       </div>
-      <input type="submit" value="Search" />
+      <button type="submit">
+        <span>Search</span>
+      </button>
     </form>
   </div>
 </template>
@@ -83,6 +85,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$dark: #201029;
+$dark-neon: #000002;
+$primary: #926ce4;
+$secondary: #501326;
+$secondary-hover: #501326;
+$secondary-active: #701431;
+$btn-hover: #844ff6;
+$btn-active: #6f3ae2;
+$box-shadow: 0px 4px 5px 0px #0000002e;
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -98,14 +110,14 @@ export default {
     margin-left: 10px;
     transition: 300ms ease-in;
     cursor: pointer;
-    background: #000;
-    box-shadow: 0px 3px 0px 1px #000;
+    background: rgb(0, 150, 219);
     width: 150px;
     padding: 5px;
+    border-radius: 3px;
 
     &.checked {
-      background: #fff;
-      color: #000;
+      background: $secondary;
+      color: #fff;
     }
   }
 }
@@ -130,7 +142,7 @@ textarea {
   width: 400px;
 }
 
-input {
+button {
   padding: 10px 20px;
   line-height: 1;
   cursor: pointer;
@@ -140,15 +152,17 @@ input {
   box-shadow: 2px 4px 2px 0px #000;
   transition: 200ms ease-in-out;
   transform: scale(1.05);
+  background: $secondary;
+  color: #fff;
   &:hover {
-    background: #000;
+    background: $secondary-hover;
     color: #fff;
     transform: scale(1);
   }
   &:active {
-    background: #111;
+    background: $secondary-active;
     color: #fff;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 }
 </style>
