@@ -1,6 +1,6 @@
 <template>
-  <div class="dashboard dark">
-    <div class="container-fluid">
+  <div class="dashboard">
+    <div class="container">
       <div class="row">
         <div class="col-xl-2 col-lg-3">
           <aside>
@@ -17,7 +17,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/dashboard/friends">
+                <router-link to="/friends">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                     <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                     <path
@@ -53,9 +53,7 @@
           </aside>
         </div>
         <div class="col">
-          <aside>
-            <router-view></router-view>
-          </aside>
+          <router-view></router-view>
         </div>
       </div>
     </div>
@@ -71,65 +69,56 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $dark-neon: #000002;
 $primary: #926ce4;
 $light: #f8f8f8;
-.dashboard.dark {
-  aside {
-    background: $dark-neon;
-    color: #fff;
-  }
-  ul li a {
-    color: #fff;
-    svg {
-      fill: #fff;
-    }
 
-    &.router-link-active {
-      color: $primary;
-      svg {
-        fill: $primary;
-      }
-    }
-  }
+.dashboard {
+  color: #fff;
 }
+
 aside {
   display: block;
-  background: #ffffff;
-  border-radius: 3px;
+  background: #191919;
+  border-radius: 20px;
   width: 100%;
   padding: 15px;
-  color: #000;
+  color: #fff;
   text-align: left;
-}
-
-ul {
-  display: block;
-  margin: 15px 0;
-  padding: 0;
-  list-style-type: none;
-  li {
-    a {
-      display: block;
-      color: #000;
-      padding: 5px;
-      font-weight: 500;
-      text-align: left;
-      display: flex;
-      &.router-link-active {
-        color: $primary;
-        svg {
-          fill: $primary;
+  box-shadow: 5px 11px 0px 4px #17101ba6;
+  ul {
+    display: block;
+    margin: 15px 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      a, span {
+        display: block;
+        color: #fff;
+        padding: 5px;
+        font-weight: 500;
+        text-align: left;
+        font-size: 18px;
+        display: flex;
+        &.router-link-active {
+          span {
+            color: $primary;
+          }
+          svg {
+            fill: $primary;
+          }
         }
-      }
 
-      svg {
-        width: 20px;
-        height: 20px;
-      }
-      span {
-        margin: auto 0 auto 10px;
+        svg {
+          width: 20px;
+          height: 20px;
+          margin: auto 0;
+          fill: #fff;
+        }
+        span {
+          margin: auto 0 auto 10px;
+        }
       }
     }
   }

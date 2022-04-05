@@ -19,6 +19,7 @@ h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
   margin: 40px 0 0;
+  color: #fff
 }
 ul {
   list-style-type: none;
@@ -29,6 +30,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #fff;
 }
 </style>

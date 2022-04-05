@@ -2,16 +2,17 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 let mongoose = require("mongoose")
-const config = require("./config/db");
 let app = require("express")();
 
 //configure database and mongoose
 mongoose
-  .connect(config.database, { useNewUrlParser: true })
+  .connect(
+    "mongodb://alexandr:baguvix1B@45.143.95.183:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+  )
   .then(() => {
     console.log("Database is connected");
   })
-  .catch(err => {
+  .catch((err) => {
     console.log({ database_error: err });
   });
 // db configuaration ends here
@@ -36,7 +37,7 @@ app.use("/user", userRoutes);
 let http = require("http").Server(app);
 let io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:8081",
+    origin: "http://localhost:8080",
     allowedHeaders: ["my-custom-header"],
     methods: ["GET", "POST"],
     credentials: true,

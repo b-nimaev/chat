@@ -1,29 +1,41 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import ChatSearch from "@/views/Chat/ChatSearch.vue";
 import DashboardView from "@/views/DashboardView.vue";
+import AuthView from "@/views/AuthView.vue";
+import RegisterView from "@/views/RegisterView.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: () =>
-      import(/* webpackChunkName: "profile" */ "../views/ProfileView.vue"),
-  },
-  {
-    path: "/chat",
-    name: "chat",
-    component: () =>
-      import(/* webpackChunkName: "chat" */ "@/views/Chat/ChatView.vue"),
+    component: DashboardView,
     children: [
       {
         path: "",
-        component: ChatSearch,
+        component: () =>
+          import(
+            /* webpackChunkName: "DashboardProfile" */ "@/views/Dashboard/DashboardProfile.vue"
+          ),
+      },
+      {
+        path: "friends",
+        component: () =>
+          import(
+            /* webpackChunkName: "DashboardFriends" */ "@/views/Dashboard/DashboardFriends.vue"
+          ),
+      },
+      {
+        path: "messages",
+        component: () =>
+          import(
+            /* webpackChunkName: "DashboardMessages" */ "@/views/Dashboard/DashboardMessages.vue"
+          ),
+      },
+      {
+        path: "settings",
+        component: () =>
+          import(
+            /* webpackChunkName: "DashboardSettings" */ "@/views/Dashboard/DashboardSettings.vue"
+          ),
       },
     ],
   },
@@ -60,15 +72,24 @@ const routes = [
             /* webpackChunkName: "DashboardSettings" */ "@/views/Dashboard/DashboardSettings.vue"
           ),
       },
+      {
+        path: "user/:id",
+        component: () =>
+          import(
+            /* webpackChunkName: "DashboardSettings" */ "@/views/Dashboard/DashboardUser.vue"
+          ),
+      },
     ],
   },
   {
     path: "/auth",
-    component: () =>
-      import('@/views/AuthView.vue')
-  }
+    component: AuthView,
+  },
+  {
+    path: "/register",
+    component: RegisterView,
+  },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,

@@ -120,6 +120,10 @@ $box-shadow: 0px 4px 5px 0px #0000002e;
       color: #fff;
     }
   }
+
+  input {
+    visibility: hidden;
+  }
 }
 
 .message-wrapper {
