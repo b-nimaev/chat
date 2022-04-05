@@ -1,7 +1,11 @@
 <template>
-  <form @submit.prevent="send">
-    <textarea v-model="text"> </textarea>
-    <button type="submit">Send</button>
+  <form @submit.prevent="">
+    <textarea
+      v-model="text"
+      @keydown.enter.prevent="handleEnter"
+    >
+    </textarea>
+    <button @click="sendMessage">Send</button>
   </form>
 </template>
 
@@ -9,7 +13,8 @@
 form {
   display: flex;
   flex-direction: column;
-  background: #1e1e1e;
+  background: #0b0a0a;
+  box-shadow: 0 2px 3px #22211f;
   border-radius: 5px;
   margin: 15px;
   button {
@@ -26,13 +31,14 @@ form {
 }
 textarea {
   width: 100%;
-  min-height: 90px;
+  min-height: 50px;
   max-height: 300px;
   border: 0;
   color: #fff;
   outline: none;
   padding: 10px 20px;
   background: transparent;
+  transition: 200ms;
   resize: none;
 }
 </style>
@@ -45,10 +51,18 @@ export default {
     };
   },
   methods: {
-    send() {
-      console.log(this.text)
-      this.text = ''
+    handleEnter (e) {
+      if (e.shiftKey) {
+        console.log('y')
+        this.text += '\n'
+      } else {
+        this.sendMessage()
+      }
     },
+    sendMessage() {
+      console.log(this.text)
+      this.text = null
+    }
   },
 };
 </script>

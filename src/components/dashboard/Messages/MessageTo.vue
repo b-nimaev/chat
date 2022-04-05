@@ -5,9 +5,6 @@
         {{ message }}
       </span>
     </div>
-    <div class="avatar">
-      <img src="@/assets/avatars/98pPYHVTjOs.jpg" alt="katya" />
-    </div>
   </div>
 </template>
 
@@ -22,19 +19,9 @@ export default {
 .message {
   display: flex;
   justify-content: flex-end;
-  .avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    overflow: hidden;
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-  }
   .text {
-    max-width: 60%;
-    margin: 0 15px auto 0;
+    max-width: 70%;
+    margin: 0 0 auto 0;
     background: #1c1c1c;
     padding: 15px;
     border-radius: 5px;

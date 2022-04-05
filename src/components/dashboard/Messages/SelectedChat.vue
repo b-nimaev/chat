@@ -27,7 +27,7 @@ export default {
   },
   components: {
     KeyboardComponent,
-    MessageBox
+    MessageBox,
   },
   methods: {
     user() {
@@ -41,7 +41,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header, .user-info {
+aside {
+  padding: 0 0 5px;
+  
+}
+.header {
+  border-bottom: 1px solid #0f0a13;
+  padding: 15px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.header,
+.user-info {
   display: flex;
 }
 h4 {

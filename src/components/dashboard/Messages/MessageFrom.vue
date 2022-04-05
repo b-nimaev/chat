@@ -1,8 +1,5 @@
 <template>
   <div class="message">
-    <div class="avatar">
-      <img src="@/assets/avatars/katya.jpg" alt="katya" />
-    </div>
     <div class="text">
       <span>
         {{ message }}
@@ -21,21 +18,11 @@ export default {
 <style lang="scss" scoped>
 .message {
   display: flex;
-  .avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    overflow: hidden;
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-  }
   .text {
-    max-width: 60%;
-    margin: 0 0 auto 15px;
+    max-width: 70%;
+    margin: 0 0 auto 0;
     background: #1c1c1c;
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     p {
       margin: 0;

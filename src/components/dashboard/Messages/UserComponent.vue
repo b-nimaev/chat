@@ -1,7 +1,7 @@
 <template>
   <li>
     <a href="javascript:void(0)">
-      <img :src="itemImage" alt="" />
+      <!-- <img :src="itemImage" alt="" /> -->
       <div class="userInfo">
         <span class="name">{{ first_name }}</span>
         <span class="name">{{ last_name }}</span>
@@ -20,10 +20,6 @@ export default {
     imageUrl: String,
   },
   computed: {
-    itemImage() {
-      let fileName = this.imageUrl;
-      return require(`@/assets/avatars/${fileName}.jpg`);
-    },
   },
 };
 </script>

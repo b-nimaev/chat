@@ -1,45 +1,13 @@
 <template>
-  <div class="col-lg-3 col-xl-3 user-list">
+  <div class="d-none d-lg-block col-lg-4 col-xl-3 user-list">
     <aside>
-      <ul>
-        <UserComponent :v-for="user in users" :imageUrl="katya" />
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-id="alexandrbnimaev"
-            @contextmenu="handler($event)"
-            @click.prevent="userSelected"
-          >
-            <img src="@/assets/avatars/98pPYHVTjOs.jpg" alt="" />
+      <ul v-if="users">
+        <li v-for="user in users" :key="user">
+          <a :data-username="user.username" href="javascript:void(0)">
+            <img :src="require(`../../../assets/avatars/${user.avatar}.jpg`)" alt="">
             <div class="userInfo">
-              <span class="name">Alexandr</span>
-              <span class="username">@someusername</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-id="zorigma"
-            @click.prevent="userSelected"
-          >
-            <img src="@/assets/avatars/cats.jpg" alt="" />
-            <div class="userInfo">
-              <span class="name">Zorigma Muhadanova</span>
-              <span class="username">@someusername</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-id="ekaterina"
-            @click.prevent="userSelected"
-          >
-            <img src="@/assets/avatars/katya.jpg" alt="" />
-            <div class="userInfo">
-              <span class="name">Ekaterina Abramova</span>
-              <span class="username">@someusername</span>
+              <span class="name">{{ user.first_name + ' ' + user.last_name }}</span>
+              <span class="username">{{ user.username }}</span>
             </div>
           </a>
         </li>
@@ -48,7 +16,6 @@
   </div>
 </template>
 <script>
-import UserComponent from "./UserComponent.vue";
 export default {
   data() {
     return {
@@ -57,19 +24,16 @@ export default {
           first_name: "Alexandr",
           last_name: "Balzhinimaev",
           username: "@alexandrbnimaev",
-          avatar: "@/assets/avatars/katya.jpg",
+          avatar: "cats",
         },
         {
           first_name: "Ekaterina",
           last_name: "Abramova",
           username: "@katyabramova",
-          avatar: "@/assets/avatars/katya.jpg",
+          avatar: "katya",
         },
       ],
     };
-  },
-  components: {
-    UserComponent,
   },
   methods: {
     handler: function (e) {
@@ -111,11 +75,12 @@ export default {
         }
         .userInfo {
           flex: 1;
-          margin: auto 0;
+          margin: auto 0 auto 10px;
           span {
             display: block;
             font-size: 16px;
             line-height: 1;
+            color: #fff;
             &.username {
               font-weight: 300;
               color: #999;

@@ -9,7 +9,10 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="data.password" autocomplete="off" />
       </div>
-      <button @click.prevent="auth">Login</button>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password2" v-model="data.password2" autocomplete="off" />
+      </div>
       <button @click.prevent="register">Register</button>
     </form>
   </div>
@@ -21,7 +24,8 @@ export default {
     return {
       data: {
         username: '',
-        password: ''
+        password: '',
+        password2: ''
       }
     }
   },
