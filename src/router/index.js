@@ -40,6 +40,13 @@ const routes = [
     ],
   },
   {
+    path: "/streams",
+    component: () =>
+      import(
+        /* webpackChunkName: "StreamsSettings" */ "@/views/StreamsView.vue"
+      ),
+  },
+  {
     path: "/dashboard",
     name: "dashboard",
     component: DashboardView,

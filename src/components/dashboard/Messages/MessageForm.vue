@@ -13,8 +13,8 @@
 form {
   display: flex;
   flex-direction: column;
-  background: #0b0a0a;
-  box-shadow: 0 2px 3px #22211f;
+  background: #ffffff0a;
+  box-shadow: 0 2px 3px #7d7081;
   border-radius: 5px;
   margin: 15px;
   button {

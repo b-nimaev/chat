@@ -3,7 +3,7 @@
     <aside>
       <ul v-if="users">
         <li v-for="user in users" :key="user">
-          <a :data-username="user.username" href="javascript:void(0)">
+          <a :data-username="user.username" href="javascript:void(0)"  @click.prevent="selectUser(user.username)">
             <img :src="require(`../../../assets/avatars/${user.avatar}.jpg`)" alt="">
             <div class="userInfo">
               <span class="name">{{ user.first_name + ' ' + user.last_name }}</span>
@@ -47,6 +47,9 @@ export default {
     userSelected(e) {
       console.log(e.target);
     },
+    selectUser (user) {
+      console.log(user)
+    }
   },
 };
 </script>
@@ -54,7 +57,7 @@ export default {
 .user-list {
   ul {
     padding: 0;
-    margin: -15px 0;
+    margin: 0;
     list-style-type: none;
     li {
       position: relative;
@@ -78,7 +81,7 @@ export default {
           margin: auto 0 auto 10px;
           span {
             display: block;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1;
             color: #fff;
             &.username {

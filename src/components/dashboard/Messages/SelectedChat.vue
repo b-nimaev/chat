@@ -3,9 +3,9 @@
     <div class="header">
       <div class="user-info">
         <div class="avatar">
-          <img src="@/assets/avatars/98pPYHVTjOs.jpg" alt="" />
+          <img :src="image" alt="" />
         </div>
-        <h4>Alexandr</h4>
+        <h4>{{ first_name }}</h4>
       </div>
       <button @click.prevent="more" class="more">
         <span></span><span></span><span></span>
@@ -22,12 +22,23 @@
 import KeyboardComponent from "./MessageForm.vue";
 import MessageBox from "./MessageBox.vue";
 export default {
+  data () {
+    return {
+      avatar: 'cats'
+    }
+  },
   props: {
     id: Number,
+    first_name: String
   },
   components: {
     KeyboardComponent,
     MessageBox,
+  },
+  computed: {
+    image () {
+      return require(`@/assets/avatars/${this.avatar}.jpg`)
+    }
   },
   methods: {
     user() {
