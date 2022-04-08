@@ -3,29 +3,33 @@
     <form>
       <div class="input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="data.username" autocomplete="off" />
+        <input type="text" id="username" v-model="data.username" autocomplete="off" required />
       </div>
       <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="data.password" autocomplete="off" />
+        <input type="password" id="password" v-model="data.password" autocomplete="off" required />
       </div>
       <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password2" v-model="data.password2" autocomplete="off" />
+        <input type="password" id="password2" v-model="data.password2" autocomplete="off" required />
       </div>
       <button @click.prevent="register">Register</button>
     </form>
+    <p>{{ info }}</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
+      info: '',
       data: {
         username: '',
         password: '',
-        password2: ''
+        password2: '',
       }
     }
   },
@@ -35,7 +39,20 @@ export default {
       console.log(this.data.password)
     },
     register () {
-      this.$router.push("register")
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/user/register',
+        params: {
+          email: '123@gmail.com',
+          name: this.data.username,
+          password: this.data.password
+        }
+      }).then(function(response) {
+        console.log('success!')
+        console.log(response)
+      }).catch(function(error) {
+        console.log(error)
+      })
     }
   }
 }
@@ -51,9 +68,6 @@ $box-shadow: 0px 4px 5px 0px #0000002e;
 $secondary: #501326;
 
 $form-width: 250px;
-.wrapper {
-  margin: auto;
-}
 form {
   width: $form-width;
   margin: auto;

@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import KeyboardComponent from "@/components/dashboard/Messages/MessageForm.vue";
-import MessageBox from "@/components/dashboard/Messages/MessageBox.vue";
+import KeyboardComponent from "@/components/Messages/MessageForm.vue";
+import MessageBox from "@/components/Messages/MessageBox.vue";
 
 export default {
   data() {

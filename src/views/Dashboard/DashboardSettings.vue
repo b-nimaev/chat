@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import switcherComponent from "@/components/switcherComponent.vue";
-import switcherGPSComponent from "@/components/GPSComponent.vue";
+import switcherComponent from "@/components/Settings/switcherComponent.vue";
+import switcherGPSComponent from "@/components/Settings/GPSComponent.vue";
 export default {
   components: {
     switcherComponent,

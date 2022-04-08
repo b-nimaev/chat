@@ -1,13 +1,17 @@
 const User = require("../model/User");
 
 exports.registerNewUser = async (req, res) => {
+  console.log('hi')
   try {
     let isUser = await User.find({ email: req.body.email });
     console.log(isUser);
     if (isUser.length >= 1) {
+      console.log('finded')
       return res.status(409).json({
         message: "email already in use",
       });
+    } else {
+      console.log('not find')
     }
     const user = new User({
       name: req.body.name,

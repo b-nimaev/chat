@@ -1,14 +1,18 @@
 const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-let mongoose = require("mongoose")
+let mongoose = require("mongoose");
 let app = require("express")();
 
 //configure database and mongoose
 mongoose
-  .connect(
-    "mongodb://alexandr:baguvix1B@45.143.95.183:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-  )
+  .connect("mongodb://45.143.95.183:27017", {
+    auth: { authSource: "admin" },
+    user: "alexandr",
+    pass: "baguvix1B",
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Database is connected");
   })
@@ -33,8 +37,11 @@ app.get("/", () => {
 const userRoutes = require("./api/user/route/user"); //bring in our user routes
 app.use("/user", userRoutes);
 
-
 let http = require("http").Server(app);
+http.listen(3000, () => {
+  console.log("Listening on port 3000");
+});
+
 let io = require("socket.io")(http, {
   cors: {
     origin: "http://localhost:8080",
@@ -42,9 +49,6 @@ let io = require("socket.io")(http, {
     methods: ["GET", "POST"],
     credentials: true,
   },
-});
-http.listen(3000, () => {
-  console.log("Listening on port 3000");
 });
 
 const users = [];
