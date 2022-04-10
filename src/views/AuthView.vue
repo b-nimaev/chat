@@ -48,7 +48,7 @@ $secondary: #501326;
 
 $form-width: 250px;
 .wrapper {
-  margin: auto;
+  margin: 200px auto;
 }
 form {
   width: $form-width;

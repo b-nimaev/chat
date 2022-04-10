@@ -1,8 +1,8 @@
 <template>
-  <aside>
+  <aside class="sidebar">
     <ul>
       <li>
-        <router-link to="/dashboard/profile">
+        <router-link to="profile">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <path
@@ -13,7 +13,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/friends">
+        <router-link to="friends">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
             <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <path
@@ -24,7 +24,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/dashboard/messages">
+        <router-link to="messages">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
             <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
             <path
@@ -39,27 +39,54 @@
 </template>
 
 <style lang="scss" scoped>
-$dark-neon: #000002;
-$primary: #926ce4;
-$light: #f8f8f8;
+aside {
+  width: 220px;
+  border-radius: 10px;
+  margin-right: 2rem;
+  height: fit-content;
+  background: #fff;
+  box-shadow: -2px 10px 13px 3px #ebebeb30;
+  ul {
+    li {
+      a {
+        span {
+          color: #000
+        }
+        svg {
+          fill: #000;
+        }
+      }
+    }
+  }
+}
 ul {
   display: block;
-  margin: 15px 0;
-  padding: 0;
+  margin: 0;
+  padding: 1rem;
   list-style-type: none;
   li {
-    a,
-    span {
-      display: block;
-      color: #fff;
-      padding: 5px;
-      font-weight: 500;
-      text-align: left;
-      font-size: 18px;
+    a {
       display: flex;
-      position: relative;
-      transform: scale(1);
-      left: 0;
+      padding: 0.8rem 1rem;
+      span {
+        display: block;
+        color: #fff;
+        font-weight: 500;
+        text-align: left;
+        font-size: 18px;
+        display: flex;
+        position: relative;
+        transform: scale(1);
+        margin: auto 0 auto 10px;
+        left: 0;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        margin: auto 0;
+        fill: #fff;
+      }
+
       &.router-link-active {
         left: 5px;
         transform: scale(1.05);
@@ -67,44 +94,13 @@ ul {
           color: #56ffb5;
         }
         svg {
-          fill: #56ffb5
+          fill: #56ffb5;
         }
-      }
-
-      svg {
-        width: 20px;
-        height: 20px;
-        margin: auto 0;
-        fill: #fff;
-      }
-      span {
-        margin: auto 0 auto 10px;
       }
     }
   }
 }
 
 @media screen and (max-width: 1200px) {
-  ul {
-    margin: 0;
-    display: flex;
-    li {
-      a {
-        flex-direction: column;
-        svg,
-        span {
-          text-align: center;
-          margin: auto;
-          display: block;
-        }
-      }
-    }
-  }
-
-  nav {
-    margin-bottom: 30px;
-    bottom: 0;
-    left: 0;
-  }
 }
 </style>

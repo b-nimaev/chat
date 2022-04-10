@@ -2,24 +2,34 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 let app = require("express")();
-
+const MongoClient = require("mongodb").MongoClient;
+const mongoClient = new MongoClient("mongodb://alexandr:baguvix1B@45.143.95.183:27017");
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(morgan("dev")); // configire morgan
-
-// define first route
-app.get("/", () => {
-  console.log("Hello MEVN Soldier");
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 
 let http = require("http").Server(app);
 
-http.listen(3000, () => {
-  console.log("Listening on port 3000");
+mongoClient.connect(function (err, client) {
+  if (err) return console.log(err);
+  app.locals.collection = client.db("axbn").collection("users");
+  http.listen(3000, function () {
+    console.log("Сервер ожидает подключения...");
+  });
 });
 
+app.post('/user/register', async function (req, res) {
+  if (req.query.name == null) {
+    return res.sendStatus(400)
+  }
+  console.log(req.body)
+  const collection = app.locals.collection
+  await collection.insertOne(req.query).then((data) => {
+    res.send(true)
+  }).catch(err => {
+    console.log(err)
+  })
+})
 let io = require("socket.io")(http, {
   cors: {
     origin: "http://localhost:8080",

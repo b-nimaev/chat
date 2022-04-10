@@ -29,20 +29,8 @@ $primary: #926ce4;
 $light: #f8f8f8;
 
 .dashboard {
+  padding: 20px 0;
   color: #fff;
-}
-
-aside {
-  display: block;
-  // background: #110e0fdb;
-  // border: .1px solid #201e1e;
-  background: #0000007d;
-  border-radius: 3px;
-  width: 100%;
-  padding: 15px;
-  color: #222;
-  text-align: left;
-  // box-shadow: 5px 11px 0px 4px #17101ba6;
 }
 
 @media screen and (max-width: 1200px) {

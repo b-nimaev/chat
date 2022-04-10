@@ -1,12 +1,58 @@
 @import 'styles/_variables.scss';
 @import '~bootstrap/scss/bootstrap-reboot.scss';
-@import '~bootstrap/scss/bootstrap-grid.scss';
 @import '~bootstrap/scss/_type.scss';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$primary: #56ffb5;
+$dark-transparent: #0000007d;
+
 a {
     text-decoration: none;
     transition: 200ms ease;
 }
-body {
-    font-family: 'Poppins', sans-serif;
+
+aside {
+    &.wrapper {
+        display: flex;
+    }
+}
+main {
+    width: 1400px;
+    margin: 2rem auto;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background: #000000;
+    /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: black;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid orange;
+    /* creates padding around scroll thumb */
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    body {
+        padding: 0;
+    }
+
+    #app {
+        padding: 0;
+        margin: 0;
+    }
 }

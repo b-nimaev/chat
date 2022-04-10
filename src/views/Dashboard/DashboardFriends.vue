@@ -19,7 +19,6 @@
 
 <style lang="scss" scoped>
 .wrapper {
-  padding: 30px;
   color: #fff;
 }
 h4 {

@@ -43,13 +43,15 @@ export default {
         method: 'post',
         url: 'http://localhost:3000/user/register',
         params: {
-          email: '123@gmail.com',
           name: this.data.username,
           password: this.data.password
         }
-      }).then(function(response) {
-        console.log('success!')
+      }).then((response) => {
         console.log(response)
+        console.log('success!')
+        if (response.data) {
+          this.$router.push("/dashboard/profile");
+        }
       }).catch(function(error) {
         console.log(error)
       })
