@@ -34,14 +34,13 @@ export default {
 <style lang="scss" scoped>
 article {
   // background: #1e1e1e;
-  padding: 15px;
+  padding: 1.5rem 0;
   min-height: 200px;
-  background: #fff;
+  background: $black;
   margin: 0;
-  border-radius: 5px;
-  max-height: 440px;
+  border-radius: 0 0 5px 5px;
+  max-height: 330px;
   overflow-y: auto;
-  box-shadow: -2px 10px 13px 3px #ebebeb30;
   &::-webkit-scrollbar {
     width: 5px; /* width of the entire scrollbar */
     // display: none;
@@ -59,6 +58,9 @@ article {
   }
   .message {
     margin: 10px 0;
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 .message {
@@ -70,10 +72,13 @@ article {
   .text {
     max-width: 70%;
     margin: 0 0 auto 0;
-    background: #eeeeeea3;
-    padding: 5px 8px;
+    background: $gray-900;
+    padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
     span {
+      padding: 10px;
       color: #7b7b7b;
     }
     &.sender {

@@ -1,8 +1,16 @@
 <template>
   <HeaderComponent />
   <main>
-    <NavbarComponent />
-    <router-view />
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2" v-if="logged && !mobile">
+          <NavbarComponent />
+        </div>
+        <div class="col">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 <script>
@@ -13,36 +21,56 @@ export default {
     HeaderComponent,
     NavbarComponent,
   },
+  computed: {
+    mobile: function () {
+      return this.$store.getters.mobile
+    },
+    logged: function () {
+      return this.$store.getters.token
+    }
+  },
+  created() {
+    if (window.innerWidth < 992) {
+      this.$store.commit("mobile", true)
+    }
+    window.addEventListener("resize", this.myEventHandler);
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.myEventHandler);
+  },
+  methods: {
+    myEventHandler(e) {
+      // your code for handling resize...
+      if (e.target.innerWidth < 992) {
+        this.$store.commit("mobile", true)
+      } else {
+        this.$store.commit("mobile", false)
+      }
+    }
+  }
 };
 </script>
 
 <style lang="scss">
 body {
-    font-family: 'Poppins', sans-serif;
-    // background-image: linear-gradient(16deg, #000000d9 40%, #41434d);
-    background-image: linear-gradient(16deg, rgb(90 67 67 / 85%) 40%, #3b2b33);
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    background-size: cover;
-    color: #fff;
+  font-family: "Poppins", sans-serif;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: cover;
 }
 
 #app {
-    // font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    // background-image: linear-gradient(45deg, #41cc94, #a02791b5);
-    // background-image: linear-gradient(45deg, #1e2824, rgb(0 0 0 / 71%));
-    // background-image: linear-gradient(124deg, #47237ddb -20%, #564d84);
-    padding: 20px;
-    // box-shadow: 9px 6px 0px 1px #ffffff;
-    display: flex;
-    min-height: 100vh;
-    height: 100%;
-    flex-direction: column;
-    transition: 400ms;
-    background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // background-image: linear-gradient(90deg, #db6c8f 0, #6b159d 60%, #32019d);
+  background-image: linear-gradient(254deg, #320404 0, #2f173d 60%, #0a0515);
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  flex-direction: column;
+  transition: 400ms;
 }
 
 main {
@@ -54,4 +82,58 @@ main {
     }
   }
 }
+  #app {
+    padding: .8rem 0;
+  }
+  main {
+    margin: 1.5rem 0;
+  }
+@media screen and (max-width: 1400px) {
+  #app {
+    padding: .5rem 0;
+  }
+  main {
+    margin: .5rem 0;
+  }
+  .row {
+    --bs-gutter-x: .5rem !important
+  }
+  .row > * {
+    padding-right: calc(var(--bs-gutter-x) * .5) !important;
+    padding-left: calc(var(--bs-gutter-x) * .5) !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #app {
+    padding: .5rem 0;
+  }
+  main {
+    margin: .5rem 0;
+  }
+  .row {
+    --bs-gutter-x: .5rem !important
+  }
+  .row > * {
+    padding-right: calc(var(--bs-gutter-x) * .5) !important;
+    padding-left: calc(var(--bs-gutter-x) * .5) !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #app {
+    padding: .5rem 0;
+  }
+  main {
+    margin: .5rem 0;
+  }
+  .row {
+    --bs-gutter-x: .5rem !important
+  }
+  .row > * {
+    padding-right: calc(var(--bs-gutter-x) * .5) !important;
+    padding-left: calc(var(--bs-gutter-x) * .5) !important;
+  }
+}
+
 </style>

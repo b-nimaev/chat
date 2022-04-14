@@ -1,149 +1,93 @@
 <template>
-  <aside class="wrapper">
-    <section class="left__side">
-      <div class="avatar">
-        <img src="./../../assets/avatars/98pPYHVTjOs.jpg" alt="" />
+  <aside>
+    <div class="row">
+      <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+        <div class="left__side">
+          <div class="avatar">
+            <img v-if="avatar" :src="require(`@/assets/avatars/${avatar}`)" alt="" />
+          </div>
+        </div>
+        <button class="edit">Edit</button>
       </div>
-    </section>
-    <section class="right__side">
-      <article id="about">
-        <h4>Alexandr Balzhinimaev</h4>
-        <p class="status">Awesome text Lorem, ipsum dolor.</p>
-      </article>
-      <article id="rating">
-        <h5>Rating</h5>
-        <ul>
-          <li>
-            <p>Successful dialogs: <span>85%</span></p>
-          </li>
-          <li>
-            <p>Average rating: <span>8 of 10</span></p>
-          </li>
-          <li>
-            <p>Rating: <span>195</span></p>
-          </li>
-        </ul>
-      </article>
-      <article id="verified">
-        <h5>Verified details</h5>
-        <ul>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M240.1 336.1C231.6 346.3 216.4 346.3 207 336.1L151 280.1C141.7 271.6 141.7 256.4 151 247C160.4 237.7 175.6 237.7 184.1 247L224 286.1L319 191C328.4 181.7 343.6 181.7 352.1 191C362.3 200.4 362.3 215.6 352.1 224.1L240.1 336.1zM344.1 43.41C377 39.1 411.6 49.59 437 74.98C462.4 100.4 472.9 134.1 468.6 167.9C494.1 188.2 512 220.1 512 256C512 291.9 494.1 323.8 468.6 344.1C472.9 377 462.4 411.6 437 437C411.6 462.4 377 472.9 344.1 468.6C323.8 494.1 291.9 512 256 512C220.1 512 188.2 494.1 167.9 468.6C134.1 472.9 100.4 462.4 74.98 437C49.6 411.6 39.1 377 43.41 344.1C17.04 323.8 0 291.9 0 256C0 220.1 17.04 188.2 43.42 167.9C39.1 134.1 49.6 100.4 74.98 74.98C100.4 49.6 134.1 39.1 167.9 43.41C188.2 17.04 220.1 0 256 0C291.9 0 323.8 17.04 344.1 43.41L344.1 43.41zM190.1 99.07L172 93.25C150.4 86.6 125.1 91.87 108.9 108.9C91.87 125.1 86.6 150.4 93.25 172L99.07 190.1L81.55 200.3C61.54 210.9 48 231.9 48 256C48 280.1 61.54 301.1 81.55 311.7L99.07 321L93.25 339.1C86.6 361.6 91.87 386 108.9 403.1C125.1 420.1 150.4 425.4 172 418.7L190.1 412.9L200.3 430.5C210.9 450.5 231.9 464 256 464C280.1 464 301.1 450.5 311.7 430.5L321 412.9L339.1 418.8C361.6 425.4 386 420.1 403.1 403.1C420.1 386 425.4 361.6 418.7 339.1L412.9 321L430.5 311.7C450.5 301.1 464 280.1 464 256C464 231.9 450.5 210.9 430.5 200.3L412.9 190.1L418.7 172C425.4 150.4 420.1 125.1 403.1 108.9C386 91.87 361.6 86.6 339.1 93.25L321 99.07L311.7 81.55C301.1 61.54 280.1 48 256 48C231.9 48 210.9 61.54 200.3 81.55L190.1 99.07z"
-              />
-            </svg>
-            <span>Name & Surname</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M240.1 336.1C231.6 346.3 216.4 346.3 207 336.1L151 280.1C141.7 271.6 141.7 256.4 151 247C160.4 237.7 175.6 237.7 184.1 247L224 286.1L319 191C328.4 181.7 343.6 181.7 352.1 191C362.3 200.4 362.3 215.6 352.1 224.1L240.1 336.1zM344.1 43.41C377 39.1 411.6 49.59 437 74.98C462.4 100.4 472.9 134.1 468.6 167.9C494.1 188.2 512 220.1 512 256C512 291.9 494.1 323.8 468.6 344.1C472.9 377 462.4 411.6 437 437C411.6 462.4 377 472.9 344.1 468.6C323.8 494.1 291.9 512 256 512C220.1 512 188.2 494.1 167.9 468.6C134.1 472.9 100.4 462.4 74.98 437C49.6 411.6 39.1 377 43.41 344.1C17.04 323.8 0 291.9 0 256C0 220.1 17.04 188.2 43.42 167.9C39.1 134.1 49.6 100.4 74.98 74.98C100.4 49.6 134.1 39.1 167.9 43.41C188.2 17.04 220.1 0 256 0C291.9 0 323.8 17.04 344.1 43.41L344.1 43.41zM190.1 99.07L172 93.25C150.4 86.6 125.1 91.87 108.9 108.9C91.87 125.1 86.6 150.4 93.25 172L99.07 190.1L81.55 200.3C61.54 210.9 48 231.9 48 256C48 280.1 61.54 301.1 81.55 311.7L99.07 321L93.25 339.1C86.6 361.6 91.87 386 108.9 403.1C125.1 420.1 150.4 425.4 172 418.7L190.1 412.9L200.3 430.5C210.9 450.5 231.9 464 256 464C280.1 464 301.1 450.5 311.7 430.5L321 412.9L339.1 418.8C361.6 425.4 386 420.1 403.1 403.1C420.1 386 425.4 361.6 418.7 339.1L412.9 321L430.5 311.7C450.5 301.1 464 280.1 464 256C464 231.9 450.5 210.9 430.5 200.3L412.9 190.1L418.7 172C425.4 150.4 420.1 125.1 403.1 108.9C386 91.87 361.6 86.6 339.1 93.25L321 99.07L311.7 81.55C301.1 61.54 280.1 48 256 48C231.9 48 210.9 61.54 200.3 81.55L190.1 99.07z"
-              />
-            </svg>
-            <span>Date of birth</span>
-          </li>
-        </ul>
-      </article>
-    </section>
+      <div class="col">
+        <div class="right__side">
+          <profile-edit></profile-edit>
+        </div>
+      </div>
+    </div>
   </aside>
 </template>
 
+<script>
+
+import ProfileEdit from '@/components/Profile/ProfileFront.vue'
+
+export default {
+  data () {
+    return {
+      // avatar: '98pPYHVTjOs.jpg'
+    }
+  },
+  components: {
+    ProfileEdit
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-$element-bg: #514b5c;
-aside {
-  &.wrapper {
-    flex: 1;
+button {
+  &.edit {
+    background: $black;
+    color: #fff;
+    padding: .8rem 1.5rem;
+    border: 0;
+    border-radius: $border-radius-lg;
+    width: 100%;
+    margin: 1.5rem 0;
+    transition: 200ms;
+    &:hover {
+      background-color: $gray-900;
+    }
   }
 }
 .left__side {
-  margin: 0 2rem;
+  padding: 1.5rem;
+  color: #fff;
+  background-color: $black;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius-lg;
 }
 .right__side {
-  flex: 1;
-  color: #777 ;
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    margin: 0 -1rem;
-  }
-  article {
-    padding: 0 2rem 2rem;
-    margin: 0;
-    text-align: left;
-    h4 {
-      margin-bottom: 2px;
-    }
-    .status {
-      font-size: 15px;
-      margin: 0;
-      color: #b3b3b3;
-      text-align: left;
-      font-weight: 400;
-    }
-    &#rating {
-      li {
-        margin: 1rem;
-        padding: 30px;
-        border-radius: 3px;
-        width: 100%;
-        background: $element-bg;
-        display: flex;
-        p {
-          margin: auto;
-          color: #35e1d1;
-          font-size: 18px;
-        }
-        span {
-          display: block;
-          text-align: center;
-          color: orange;
-          font-size: 18px;
-          font-weight: 700;
-          text-shadow: -1px 1px 6px orange;
-          margin: auto;
-        }
-      }
-    }
-    &#verified {
-      li {
-        background-color: $element-bg;
-        margin: 1rem;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        border-radius: 3px;
-        svg {
-          fill: #35e1d1;
-          width: 18px;
-          height: 18px;
-          margin: auto 8px auto 0;
-        }
-        span {
-          font-size: 18px;
-          color: #fff;
-        }
-      }
-    }
-  }
+  background: #040507;
+  box-shadow: 5px 10px 3px #000;
+  padding: 1.5rem;
+  border-radius: $border-radius-lg;
+  color: #777;
 }
 .avatar {
   width: 200px;
-  height: 200px;
+  margin: 0 auto 1rem;
+  height: auto;
   overflow: hidden;
   border-radius: 3px;
   img {
-    width: 100%;
-    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    border-radius: 0.3rem;
+    object-fit: cover;
     position: relative;
-    top: -40px;
   }
 }
 @media screen and (max-width: 1400px) {
+
+  .avatar {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 160px;
+    }
+  }
+
   main {
     section {
       &#rating {
@@ -164,6 +108,41 @@ aside {
           }
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .avatar {
+    img {
+      height: 140px;
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  .right__side, .left__side {
+    padding: 1rem;
+  }
+  .avatar {
+    width: 130px;
+    img {
+      width: 100%;
+      height: 130px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .avatar {
+    img {
+      height: 130px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .avatar {
+    width: 100%;
+    img {
+      width: 100px;
+      height: 100px;
     }
   }
 }

@@ -80,6 +80,7 @@ export default createStore({
         last_name: "b-nimaev",
         username: "@sblzh",
         avatar: "",
+        messages: []
       },
       {
         id: 4,
@@ -87,6 +88,7 @@ export default createStore({
         last_name: "Haruno",
         username: "@sakuraharuno",
         avatar: "sakura",
+        messages: []
       },
       {
         id: 5,
@@ -94,6 +96,7 @@ export default createStore({
         last_name: "Smith",
         username: "@summersmith",
         avatar: "summer",
+        messages: []
       },
       {
         id: 6,
@@ -101,10 +104,13 @@ export default createStore({
         last_name: "Killer",
         username: "@username",
         avatar: "killer",
+        messages: []
       }
     ],
     selected_chat: "",
-    messages: ""
+    messages: "",
+    token: "" || localStorage.getItem("user"),
+    mobile: ""
   },
   getters: {
     selected_chat: (state) => {
@@ -115,6 +121,12 @@ export default createStore({
     },
     messages: (state) => {
       return state.messages
+    },
+    token: (state) => {
+      return state.token
+    },
+    mobile: (state) => {
+      return state.mobile
     }
   },
   mutations: {
@@ -122,11 +134,7 @@ export default createStore({
       state.selected_chat = user
     },
     add_message(state, message) {
-      if (state.selected_chat.user.messages) {
-        state.selected_chat.user.messages.push(message)
-      } else {
-        state.selected_chat.user.messages = [].push(message)
-      }
+      state.selected_chat.user.messages.push(message)
     },
     messages_update(state) {
       if (state.selected_chat.user.messages) {
@@ -134,6 +142,15 @@ export default createStore({
       } else {
         state.messages = []
       }
+    },
+    login (state, token) {
+      state.token = token
+    },
+    logout(state) {
+      state.token = ''
+    },
+    mobile: (state, bool) => {
+      state.mobile = bool
     }
   },
   actions: {

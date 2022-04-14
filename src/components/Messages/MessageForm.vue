@@ -1,6 +1,13 @@
 <template>
-  <form @submit.prevent="">
-    <textarea v-model="text" @keydown.enter.prevent="handleEnter"> </textarea>
+  <form
+   @submit.prevent=""
+   @click="focusTextarea"
+   >
+    <textarea
+      id="keyboard"
+      v-model="text" 
+      @keydown.enter.prevent="handleEnter"
+      />
     <button @click="sendMessage">Send</button>
   </form>
 </template>
@@ -10,9 +17,10 @@ form {
   display: flex;
   flex-direction: column;
   background: #fff;
-  box-shadow: -2px 10px 13px 3px #ebebeb30;;
-  border-radius: 10px;
-  margin: 15px 0;
+  border-radius: $border-radius-lg;
+  margin: 1.5rem 0 0;
+  position: relative;
+  cursor: pointer;
   button {
     border: 0;
     background: #1cb41c;
@@ -27,8 +35,7 @@ form {
 }
 textarea {
   width: 100%;
-  min-height: 50px;
-  max-height: 300px;
+  min-height: 48px;
   border: 0;
   color: #7b7b7b;
   outline: none;
@@ -36,8 +43,11 @@ textarea {
   background: transparent;
   transition: 200ms;
   resize: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
   &:focus {
-    
+
   }
 }
 </style>
@@ -58,8 +68,11 @@ export default {
         this.sendMessage();
       }
     },
+    focusTextarea () {
+      document.getElementById("keyboard").focus()
+    },
     sendMessage() {
-      let user = this.$store.getters.selected_chat.user;
+    let user = this.$store.getters.selected_chat.user;
       if (user.messages) {
         console.log(user.messages);
       }

@@ -1,5 +1,5 @@
-@import 'styles/_variables.scss';
 @import '~bootstrap/scss/bootstrap-reboot.scss';
+@import '~bootstrap/scss/bootstrap-grid.scss';
 @import '~bootstrap/scss/_type.scss';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
@@ -9,16 +9,6 @@ $dark-transparent: #0000007d;
 a {
     text-decoration: none;
     transition: 200ms ease;
-}
-
-aside {
-    &.wrapper {
-        display: flex;
-    }
-}
-main {
-    width: 1400px;
-    margin: 2rem auto;
 }
 
 *::-webkit-scrollbar {
@@ -43,16 +33,5 @@ main {
 @media screen and (max-width: 1200px) {
     .container {
         max-width: 100%;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    body {
-        padding: 0;
-    }
-
-    #app {
-        padding: 0;
-        margin: 0;
     }
 }

@@ -1,27 +1,14 @@
 <template>
-  <div class="wrapper">
-    <div class="row">
-      <div class="col-lg-9">
-        <aside>
-          <div>
-            <h4>Friends</h4>
-          </div>
-        </aside>
-      </div>
-      <div class="col">
-        <aside>
-          <h4>filtr</h4>
-        </aside>
-      </div>
-    </div>
-  </div>
+  <aside>
+
+  </aside>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
-  color: #fff;
-}
-h4 {
-  color: #fff;
+aside {
+  background: $black;
+  padding: 30px;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
 }
 </style>

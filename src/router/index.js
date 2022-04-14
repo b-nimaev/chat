@@ -2,22 +2,16 @@ import {
   createRouter,
   createWebHistory
 } from "vue-router";
-import DashboardView from "@/views/DashboardView.vue";
 import AuthView from "@/views/AuthView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 
-const routes = [
-  {
+const routes = [{
     path: "",
-    redirect: "/profile"
+    redirect: "profile"
   },
   {
     path: "/profile",
-    component: () =>
-      import(
-        /* webpackChunkName: "DashboardProfile" */
-        "@/views/Dashboard/DashboardProfile.vue"
-      ),
+    component: () => import("@/views/Dashboard/DashboardProfile.vue")
   },
   {
     path: "/friends",
@@ -25,7 +19,8 @@ const routes = [
       import(
         /* webpackChunkName: "DashboardFriends" */
         "@/views/Dashboard/DashboardFriends.vue"
-      ),
+      )
+
   },
   {
     path: "/messages",
@@ -33,7 +28,8 @@ const routes = [
       import(
         /* webpackChunkName: "DashboardMessages" */
         "@/views/Dashboard/DashboardMessages.vue"
-      ),
+      )
+
   }, {
     path: "/settings",
     component: () =>
@@ -51,52 +47,6 @@ const routes = [
       ),
   },
   {
-    path: "/dashboard",
-    name: "dashboard",
-    component: DashboardView,
-    children: [{
-        path: "profile",
-        component: () =>
-          import(
-            /* webpackChunkName: "DashboardProfile" */
-            "@/views/Dashboard/DashboardProfile.vue"
-          ),
-      },
-      {
-        path: "friends",
-        component: () =>
-          import(
-            /* webpackChunkName: "DashboardFriends" */
-            "@/views/Dashboard/DashboardFriends.vue"
-          ),
-      },
-      {
-        path: "messages",
-        component: () =>
-          import(
-            /* webpackChunkName: "DashboardMessages" */
-            "@/views/Dashboard/DashboardMessages.vue"
-          ),
-      },
-      {
-        path: "settings",
-        component: () =>
-          import(
-            /* webpackChunkName: "DashboardSettings" */
-            "@/views/Dashboard/DashboardSettings.vue"
-          ),
-      },
-      {
-        path: "user/:id",
-        component: () =>
-          import(
-            /* webpackChunkName: "DashboardSettings" */
-            "@/views/Dashboard/DashboardUser.vue"
-          ),
-      },
-    ],
-  },
-  {
     path: "/auth",
     component: AuthView,
   },
@@ -109,5 +59,18 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/auth', '/streams', '/register', '/', '/profile'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  if (authRequired && !loggedIn) {
+    return next('/auth');
+  }
+
+  next();
+})
 
 export default router;
