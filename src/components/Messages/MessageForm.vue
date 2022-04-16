@@ -62,8 +62,7 @@ export default {
   methods: {
     handleEnter(e) {
       if (e.shiftKey) {
-        console.log("y");
-        this.text += "\n";
+        this.text += "\n\\";
       } else {
         this.sendMessage();
       }
@@ -76,15 +75,20 @@ export default {
       if (user.messages) {
         console.log(user.messages);
       }
+      console.log(this.text)
       this.$store.commit("add_message", {
         message_id: 4,
         sender_id: 1,
         message: {
           type: "text",
-          text: this.text,
+          text: `${this.text}`,
           date: "06.04.2022",
         },
       });
+      this.$socket.emit("chat message", this.text)
+      this.$socket.on("chat message", (arg) => {
+        console.log(arg)
+      })
       this.text = null;
     },
   },

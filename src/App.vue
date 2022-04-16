@@ -16,6 +16,7 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import NavbarComponent from "@/components/NavbarComponent.vue";
+
 export default {
   components: {
     HeaderComponent,
@@ -63,7 +64,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // background-image: linear-gradient(90deg, #db6c8f 0, #6b159d 60%, #32019d);
-  background-image: linear-gradient(254deg, #320404 0, #2f173d 60%, #0a0515);
+  // background-image: linear-gradient(254deg, #320404 0, #2f173d 60%, #0a0515);
   text-align: center;
   padding: 20px;
   display: flex;

@@ -34,11 +34,8 @@ export default {
 
 <style lang="scss" scoped>
 aside {
-  background: $black;
   padding: 1.5rem;
-  border-radius: $border-radius-lg;
-  box-shadow: $box-shadow;
-
+  width: 100%;
   &.null {
     height: 100%;
     display: flex;

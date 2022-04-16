@@ -1,16 +1,7 @@
 <template>
-  <div class="row">
-    <div class="col-md-4 col-lg-3" v-if="(mobile && !selected_chat) || !mobile">
-      <user-list />
-      <!-- 
-      <div class="find-user">
-        <button @click="tosearch">+ Search</button>
-      </div>
-       -->
-    </div>
-    <div class="col">
-      <messages-wrapper />
-    </div>
+  <div class="chat__list">
+    <user-list v-if="(mobile && !selected_chat) || !mobile"></user-list>
+    <messages-wrapper v-if="selected_chat"></messages-wrapper>
   </div>
 </template>
 
@@ -40,17 +31,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.find-user {
-  margin-top: 1.5rem; 
-  background: transparent;
-  button {
-    border: 0;
-    background: $gray-800;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 500;
-    line-height: 1;
+  .chat__list {
+    display: flex;
+    background: #000;
   }
-}
 </style>

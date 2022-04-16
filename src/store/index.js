@@ -110,7 +110,18 @@ export default createStore({
     selected_chat: "",
     messages: "",
     token: "" || localStorage.getItem("user"),
-    mobile: ""
+    mobile: "",
+    stream_settings: {
+      geoposition: "" || localStorage.getItem("geoposition"),
+      registered: "" || localStorage.getItem("registered"),
+      gender: {
+        male: '' || localStorage.getItem("male"),
+        female: "" || localStorage.getItem("female")
+      }
+    },
+    me: {
+      avatar: ''
+    }
   },
   getters: {
     selected_chat: (state) => {
@@ -127,6 +138,12 @@ export default createStore({
     },
     mobile: (state) => {
       return state.mobile
+    },
+    base_search: (state) => {
+      return state.stream_settings
+    },
+    me: (state) => {
+      return state.me
     }
   },
   mutations: {
@@ -151,6 +168,12 @@ export default createStore({
     },
     mobile: (state, bool) => {
       state.mobile = bool
+    },
+    base_search: (state, presets) => {
+      state.stream_settings = presets
+    },
+    me: (state, data) => {
+      state.me = data
     }
   },
   actions: {

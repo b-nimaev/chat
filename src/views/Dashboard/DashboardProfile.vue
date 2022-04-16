@@ -5,6 +5,9 @@
         <div class="left__side">
           <div class="avatar">
             <img v-if="avatar" :src="require(`@/assets/avatars/${avatar}`)" alt="" />
+            <div class="add"  v-else>
+              <button>+</button>
+            </div>
           </div>
         </div>
         <button class="edit">Edit</button>
@@ -26,6 +29,11 @@ export default {
   data () {
     return {
       // avatar: '98pPYHVTjOs.jpg'
+    }
+  },
+  computed: {
+    avatar: function () {
+      return this.$store.getters.me.avatar
     }
   },
   components: {
@@ -66,7 +74,7 @@ button {
 }
 .avatar {
   width: 200px;
-  margin: 0 auto 1rem;
+  margin: 0 auto;
   height: auto;
   overflow: hidden;
   border-radius: 3px;
@@ -76,6 +84,16 @@ button {
     border-radius: 0.3rem;
     object-fit: cover;
     position: relative;
+  }
+  .add {
+    button {
+      border: 0;
+      padding: 20px 30px;
+      font-size: 24px;
+      line-height: 1;
+      background: #222;
+      color: #fff;
+    }
   }
 }
 @media screen and (max-width: 1400px) {

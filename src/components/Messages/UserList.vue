@@ -86,14 +86,12 @@ export default {
 <style lang="scss" scoped>
 aside {
   height: fit-content;
-  width: 100%;
-  background: $black;
   padding: 0;
   margin: 0;
-  max-height: 330px;
+  max-height: 100%;
+  width: 330px;
   overflow-y: auto;
-  box-shadow: $box-shadow;
-  border-radius: $border-radius-lg;
+
   &::-webkit-scrollbar {
     // width: 5px; /* width of the entire scrollbar */
     display: none;

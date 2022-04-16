@@ -11,6 +11,8 @@
         <p><span></span> Online</p>
       </div>
     </article>
+      <!-- 
+
     <article id="rating">
       <h5>Rating</h5>
       <ul>
@@ -25,6 +27,8 @@
         </li>
       </ul>
     </article>
+
+       -->
   </div>
 </template>
 

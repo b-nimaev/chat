@@ -9,48 +9,31 @@
           </div>
           <form>
             <div class="input-group">
-              <input type="checkbox" id="geo" v-model="geo" />
-              <label :class="{active: geo}" for="geo">Geoposition active</label>
+              <input type="checkbox" id="geo" v-model="preset.geoposition" />
+              <label :class="{active: preset.geoposition}" for="geo">Geoposition active</label>
             </div>
             <div class="input-group">
-              <input type="checkbox" id="registered" v-model="reg" />
-              <label :class="{ active: reg }" for="registered">Only registered</label>
+              <input type="checkbox" id="registered" v-model="preset.registered" />
+              <label :class="{ active: preset.registered }" for="registered">Only registered</label>
             </div>
-            <!--
-            <div class="radio-group">
-              <div class="input-group">
-                <input type="radio" id="male" value="male" v-model="gender" />
-                <label for="male" @click="genderChange">Male</label>
-              </div>
-              <div class="input-group">
-                <input
-                  type="radio"
-                  id="female"
-                  value="female"
-                  v-model="gender"
-                />
-                <label for="female" @click="genderChange">Female</label>
-              </div>
-            </div>
-             -->
              <div class="gender-group">
                <div class="input-group">
-                 <input type="checkbox" id="male" value="male" v-model="male">
-                 <label :class="{ active: male }" for="male">Male</label>
+                 <input type="checkbox" id="male" value="male" v-model="preset.gender.male">
+                 <label :class="{ active: preset.gender.male }" for="male">Male</label>
                </div>
                <div class="input-group">
-                 <input type="checkbox" id="female" value="female" v-model="female">
-                 <label :class="{ active: female }" for="female">Female</label>
+                 <input @change="changed" type="checkbox" id="female" value="female" v-model="preset.gender.female">
+                 <label :class="{ active: preset.gender.female }" for="female">Female</label>
                </div>
              </div>
             <button class="search">Search</button>
           </form>
           <p class="concern"><span></span>243 concern users</p>
           <ul style="list-style-type: none; text-align: left">
-            <li>Geo: {{ geo }}</li>
-            <li>Reg: {{ reg }}</li>
-            <li>Male: {{ male }}</li>
-            <li>Female: {{ female }}</li>
+            <li>Geo: {{ preset.geoposition }}</li>
+            <li>Reg: {{ preset.registered }}</li>
+            <li>Male: {{ preset.gender.male }}</li>
+            <li>Female: {{ preset.gender.female }}</li>
           </ul>
         </div>
       </div>
@@ -60,16 +43,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      geo: false,
-      reg: false,
-      male: false,
-      female: false
-    };
+  computed: {
+    preset: function () {
+      return this.$store.getters.base_search
+    }
   },
   methods: {
-
+    changed: function () {
+      console.log("changed")
+    }
   }
 };
 </script>

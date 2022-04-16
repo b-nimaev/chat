@@ -72,21 +72,18 @@ let io = require("socket.io")(http, {
   },
 });
 
-const users = [];
-io.on("connection", (socket) => {
-  users.push({
-    userID: socket.client.id,
-    username: socket.username,
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
-  console.log(users);
-  socket.emit("users", users);
-  // ...
-});
-
-io.on("connection", (socket) => {
   // notify existing users
   socket.broadcast.emit("user connected", {
     userID: socket.id,
     username: socket.username,
+  });
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg);
+    io.emit("chat message", msg)
   });
 });

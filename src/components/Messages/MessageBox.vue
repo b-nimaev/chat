@@ -1,5 +1,5 @@
 <template>
-  <article v-if="messages">
+  <article id="box" v-if="messages">
     <div class="message" :key="message" v-for="message in messages">
       <div v-if="sender" class="text sender">
         <span>
@@ -72,14 +72,17 @@ article {
   .text {
     max-width: 70%;
     margin: 0 0 auto 0;
-    background: $gray-900;
-    padding: 10px;
-    border-radius: 5px;
+    background: $purple;
+    border-radius: 15px;
+    padding: 3px;
     cursor: pointer;
-    user-select: none;
     span {
-      padding: 10px;
-      color: #7b7b7b;
+      white-space: pre-line;
+      display: block;
+      padding: 3px 8px;
+      color: #fff;
+      font-size: 13px;
+      border-radius: 3px;
     }
     &.sender {
       margin: 0 auto auto 0;
