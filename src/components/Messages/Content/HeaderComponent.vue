@@ -20,7 +20,7 @@
           <span>A</span>
         </div>
       </div>
-      <h4>{{ selected_chat.first_name }}</h4>
+      <h6>{{ selected_chat.first_name }}</h6>
     </div>
     <button @click.prevent="more" class="more">
       <span></span><span></span><span></span>
@@ -31,13 +31,13 @@
 <script>
 export default {
   methods: {
-    messages_list () {
-      return this.$store.commit("select_chat", false)
-    }
+    messages_list() {
+      return this.$store.commit("select_chat", false);
+    },
   },
   computed: {
-    mobile () {
-      return this.$store.getters.mobile
+    mobile() {
+      return this.$store.getters.mobile;
     },
     selected_chat() {
       return this.$store.getters.selected_chat.user;
@@ -48,8 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  border-bottom: 1px solid $gray-900;
-  padding-bottom: 1.5rem;
+  padding: 0.5rem 0.5rem calc(0.5rem + 8px);
 }
 
 .header,
@@ -62,22 +61,21 @@ export default {
       padding: 0 9px 3px;
       border: 0;
       border-radius: $border-radius-lg;
-      background: $gray-900
+      background: $gray-900;
     }
     svg {
       height: 1rem;
-      fill: #777
+      fill: #777;
     }
   }
 }
-h4 {
-  font-weight: 700;
+h6 {
   margin: auto 10px;
-  color: #999;
+  color: #fff;
 }
 .avatar {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   overflow: hidden;
   border-radius: 50%;
   img {

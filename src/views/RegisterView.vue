@@ -5,7 +5,10 @@
         <h4 class="title"><span>a</span>noname</h4>
         <h5 class="subtitle">another social network for dating</h5>
         <div class="input-group">
-          <label for="username">Username</label>
+          <div class="label">
+            <label for="username">Username</label>
+            <p class="error dangerous" v-if="error">{{ error }}</p>
+          </div>
           <input
             type="text"
             id="username"
@@ -43,7 +46,10 @@
         </div>
         <!-- <button @click.prevent="auth">Login</button> -->
         <button @click.prevent="register">Register</button>
-        <p class="privacy">By creating an account, I agree to Anoname's Terms of Service and Privacy Policy</p>
+        <p class="privacy">
+          By creating an account, I agree to Anoname's Terms of Service and
+          Privacy Policy
+        </p>
         <p class="yet">
           Already have an account? <router-link to="/auth">login</router-link>
         </p>
@@ -67,7 +73,8 @@ export default {
       usernameValid: true,
       passwordValid: true,
       passwordValid2: true,
-      passwordLengthValid: true 
+      passwordLengthValid: true,
+      error: "",
     };
   },
   methods: {
@@ -83,12 +90,16 @@ export default {
 
       axios({
         method: "post",
-        url: "http://localhost:3000/user/register",
+        url: "http://192.168.1.3:3000/user/register",
         params: {
           username: this.username.toLowerCase(),
           password: this.password,
         },
-      })
+      }).then((res) => {
+        if (res.data.code == 11000) {
+          this.error = "Username is registered!";
+        }
+      });
     },
   },
   watch: {
@@ -131,6 +142,7 @@ export default {
 
 <style lang="scss" scoped>
 $form-width: 250px;
+
 h4.title {
   cursor: pointer;
   user-select: none;
@@ -144,6 +156,10 @@ h4.title {
   font-size: 14px;
   cursor: pointer;
   user-select: none;
+}
+.error {
+  text-align: left;
+  color: $red;
 }
 p.privacy {
   margin: 15px auto 0;
@@ -159,7 +175,6 @@ form {
   color: #fff;
   background: $black;
   padding: 2rem 2.5rem 3rem;
-  box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
   .input-group {
     margin: 15px 0;
@@ -218,6 +233,18 @@ form {
         }
       }
     }
+
+    .label {
+      display: flex;
+      label {
+        margin: auto 0;
+      }
+      p {
+        margin: auto 0 auto auto;
+        font-size: 12px;
+        line-height: 1;
+      }
+    }
   }
 }
 button {
@@ -235,6 +262,16 @@ button {
   }
   &:active {
     background-color: $green-800;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  form {
+  }
+}
+
+@media screen and (max-width: 576px) {
+  form {
   }
 }
 </style>

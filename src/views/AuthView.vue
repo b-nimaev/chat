@@ -61,7 +61,7 @@ export default {
 
       axios({
         method: "post",
-        url: "http://localhost:3000/user/auth",
+        url: "http://192.168.1.3:3000/user/auth",
         params: {
           name: this.username.toLowerCase(),
           password: this.password,
@@ -140,7 +140,6 @@ form {
   background: $black;
   color: #fff;
   padding: 2rem 2.5rem 3rem;
-  box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
   .input-group {
     margin: 15px 0;

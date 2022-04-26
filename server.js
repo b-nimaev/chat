@@ -27,6 +27,7 @@ mongoClient.connect(function (err, client) {
 });
 
 app.post('/user/register', async function (req, res) {
+  console.log(req.query)
   if (req.query.username == null) return res.sendStatus(400)
 
   const collection = app.locals.collection
@@ -41,6 +42,7 @@ app.post('/user/register', async function (req, res) {
 
     return insertDocument
   } catch (err) {
+    console.log(err)
     res.send(err)
   }
 })
@@ -65,7 +67,7 @@ app.post('/user/auth', async function (req, res) {
 
 let io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:8080",
+  origin: "http://192.168.1.3:8080",
     allowedHeaders: ["my-custom-header"],
     methods: ["GET", "POST"],
     credentials: true,

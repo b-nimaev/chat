@@ -127,7 +127,6 @@ form {
   background: $black;
   padding: 1.5rem;
   border-radius: $border-radius-lg;
-  box-shadow: $box-shadow;
 
   .header {
     user-select: none;

@@ -5,7 +5,7 @@
         <div class="left__side">
           <div class="avatar">
             <img v-if="avatar" :src="require(`@/assets/avatars/${avatar}`)" alt="" />
-            <div class="add"  v-else>
+            <div class="add"  v-if="!avatar && visible">
               <button>+</button>
             </div>
           </div>
@@ -28,6 +28,7 @@ import ProfileEdit from '@/components/Profile/ProfileFront.vue'
 export default {
   data () {
     return {
+      visible: false
       // avatar: '98pPYHVTjOs.jpg'
     }
   },
@@ -62,7 +63,6 @@ button {
   padding: 1.5rem;
   color: #fff;
   background-color: $black;
-  box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
 }
 .right__side {
@@ -73,11 +73,12 @@ button {
   color: #777;
 }
 .avatar {
-  width: 200px;
   margin: 0 auto;
   height: auto;
   overflow: hidden;
   border-radius: 3px;
+  background: #fff;
+  height: 200px;
   img {
     width: 200px;
     height: 200px;
