@@ -1,58 +1,73 @@
 <template>
-  <aside>
-    <div class="row">
-      <div class="col-md-5 col-lg-4">
-        <div class="find">
-          <div class="header">
-            <h4>Base</h4>
-            <p class="time">05:00</p>
-          </div>
-          <form>
-            <div class="input-group">
-              <input type="checkbox" id="geo" v-model="preset.geoposition" />
-              <label :class="{active: preset.geoposition}" for="geo">Geoposition active</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="registered" v-model="preset.registered" />
-              <label :class="{ active: preset.registered }" for="registered">Only registered</label>
-            </div>
-             <div class="gender-group">
-               <div class="input-group">
-                 <input type="checkbox" id="male" value="male" v-model="preset.gender.male">
-                 <label :class="{ active: preset.gender.male }" for="male">Male</label>
-               </div>
-               <div class="input-group">
-                 <input @change="changed" type="checkbox" id="female" value="female" v-model="preset.gender.female">
-                 <label :class="{ active: preset.gender.female }" for="female">Female</label>
-               </div>
-             </div>
-            <button class="search">Search</button>
-          </form>
-          <p class="concern"><span></span>243 concern users</p>
-          <ul style="list-style-type: none; text-align: left">
-            <li>Geo: {{ preset.geoposition }}</li>
-            <li>Reg: {{ preset.registered }}</li>
-            <li>Male: {{ preset.gender.male }}</li>
-            <li>Female: {{ preset.gender.female }}</li>
-          </ul>
-        </div>
+  <div class="streams">
+    <div class="find">
+      <div class="header">
+        <h4>Base</h4>
+        <p class="time">05:00</p>
       </div>
+      <form>
+        <div class="input-group">
+          <input type="checkbox" id="geo" v-model="preset.geoposition" />
+          <label :class="{ active: preset.geoposition }" for="geo"
+            >Geolocation active</label
+          >
+        </div>
+        <div class="input-group">
+          <input type="checkbox" id="registered" v-model="preset.registered" />
+          <label :class="{ active: preset.registered }" for="registered"
+            >Only registered</label
+          >
+        </div>
+        <div class="gender-group">
+          <div class="input-group">
+            <input
+              type="checkbox"
+              id="male"
+              value="male"
+              v-model="preset.gender.male"
+            />
+            <label :class="{ active: preset.gender.male }" for="male"
+              >Male</label
+            >
+          </div>
+          <div class="input-group">
+            <input
+              @change="changed"
+              type="checkbox"
+              id="female"
+              value="female"
+              v-model="preset.gender.female"
+            />
+            <label :class="{ active: preset.gender.female }" for="female"
+              >Female</label
+            >
+          </div>
+        </div>
+        <button class="search">Search</button>
+      </form>
+      <p class="concern"><span></span>243 concern users</p>
+      <ul style="list-style-type: none; text-align: left">
+        <li>Geo: {{ preset.geoposition }}</li>
+        <li>Reg: {{ preset.registered }}</li>
+        <li>Male: {{ preset.gender.male }}</li>
+        <li>Female: {{ preset.gender.female }}</li>
+      </ul>
     </div>
-  </aside>
+  </div>
 </template>
 
 <script>
 export default {
   computed: {
     preset: function () {
-      return this.$store.getters.base_search
-    }
+      return this.$store.getters.base_search;
+    },
   },
   methods: {
     changed: function () {
-      console.log("changed")
-    }
-  }
+      console.log("changed");
+    },
+  },
 };
 </script>
 
@@ -71,20 +86,15 @@ export default {
     border-radius: 50%;
   }
 }
-aside {
-  border-radius: $border-radius-lg;
-  // background: linear-gradient(327deg, #010c0712, #00000021);
-  min-height: 400px;
-  color: #fff;
-}
 form {
   button {
     margin-top: 1.5rem;
-    background: $green-700
+    background: $green-700;
   }
 }
 
-.radio-group, .gender-group {
+.radio-group,
+.gender-group {
   display: flex;
   .input-group {
     width: 50%;
@@ -124,10 +134,10 @@ form {
 }
 
 .find {
-  background: $black;
+  background: #0000000f;
+  width: 400px;
   padding: 1.5rem;
   border-radius: $border-radius-lg;
-  box-shadow: $box-shadow;
 
   .header {
     user-select: none;

@@ -1,44 +1,42 @@
 <template>
-  <div class="row">
-    <div class="col col-lg-6 col-xl-5 m-auto">
-      <form>
-        <h4 class="title"><span>a</span>noname</h4>
-        <h5 class="subtitle">another social network for dating</h5>
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            v-model="username"
-            v-bind:class="{ valid: usernameValid, invalid: !usernameValid }"
-            @change="usernameCheck"
-            autocomplete="off"
-          />
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            v-bind:class="{ valid: passwordValid, invalid: !passwordValid }"
-            v-model="password"
-            autocomplete="off"
-          />
-          <p v-if="!passwordValid" class="text-dangerous">
-            Minimum 8 characters!
-          </p>
-        </div>
-        <button @click.prevent="auth">Login</button>
-        <p class="yet">
-          Don't have an account? <router-link to="/register">register</router-link>
-        </p>
-      </form>
+  <form>
+    <form-heading />
+
+    <div class="input-group">
+      <label for="username">Логин</label>
+      <input
+        type="text"
+        id="username"
+        v-model="username"
+        v-bind:class="{ valid: usernameValid, invalid: !usernameValid }"
+        @change="usernameCheck"
+        autocomplete="off"
+      />
     </div>
-  </div>
+
+    <div class="input-group">
+      <label for="password">Пароль</label>
+      <input
+        type="password"
+        id="password"
+        v-bind:class="{ valid: passwordValid, invalid: !passwordValid }"
+        v-model="password"
+        autocomplete="off"
+      />
+      <p v-if="!passwordValid" class="text-dangerous">Minimum 8 characters!</p>
+    </div>
+
+    <button @click.prevent="auth">Login</button>
+
+    <p class="yet">
+      У Вас нет аккаунта?
+      <router-link to="/register">Регистрация</router-link>
+    </p>
+  </form>
 </template>
 
 <script>
-import axios from "axios";
+import heading from "@/components/Auth/FormHeading.vue";
 export default {
   data() {
     return {
@@ -49,38 +47,39 @@ export default {
       passwordValid: true,
     };
   },
+  components: {
+    "form-heading": heading,
+  },
   methods: {
     auth() {
-      if (
-        this.username.length == 0 ||
-        this.password.length == 0 ||
-        this.usernameValid == false ||
-        this.passwordValid == false
-      )
-        return;
+      if (this.usernameValid == false || this.passwordValid == false) return;
 
-      axios({
+      this.$axios({
         method: "post",
         url: "http://localhost:3000/user/auth",
-        params: {
-          name: this.username.toLowerCase(),
+        data: {
+          username: this.username,
           password: this.password,
-        },
+        }
       })
         .then((response) => {
-          if (response.data) {
+          if (response.data == false) {
+            this.username = "";
+            this.password = "";
+          } else {
             this.$store.commit("login", {
               token: response.data._id,
             });
             localStorage.setItem("user", response.data._id);
+            this.$store.commit("userinfo", {
+              username: response.data.username,
+            });
             this.$router.push("profile");
-          } else {
-            console.log("else");
           }
         })
-        .catch(function (error) {
-          console.log("error");
-          console.log(error);
+        .catch(function () {
+          this.username = "";
+          this.password = "";
         });
     },
     register() {
@@ -124,7 +123,7 @@ h4.title {
   }
 }
 .subtitle {
-  color: #777;
+  color: #fff;
   font-weight: 400;
   font-size: 14px;
   cursor: pointer;
@@ -137,10 +136,11 @@ p.yet {
   }
 }
 form {
-  background: $black;
+  background: #0000000f;
+  width: 500px;
   color: #fff;
   padding: 2rem 2.5rem 3rem;
-  box-shadow: $box-shadow;
+  margin: auto;
   border-radius: $border-radius-lg;
   .input-group {
     margin: 15px 0;
@@ -161,7 +161,7 @@ form {
       margin-right: 0;
       margin-bottom: 5px;
       padding: 5px 0;
-      color: #777;
+      color: #fff;
     }
     input {
       border: 0;
@@ -175,7 +175,6 @@ form {
       font-size: 16px;
       border: 0;
       cursor: pointer;
-      color: #777;
       box-shadow: 0px 1px 3px 1px $green;
       &#username {
         text-transform: lowercase;
@@ -216,6 +215,11 @@ button {
   }
   &:active {
     background-color: $green-800;
+  }
+}
+@media screen and (max-width: 768px) {
+  form {
+    width: 90%;
   }
 }
 </style>

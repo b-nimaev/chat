@@ -5,6 +5,7 @@
         <span>
           {{ message.message.text }}
         </span>
+        <p class="date">{{ message.message.date }}</p>
       </div>
       <div v-else class="text">
         <span>
@@ -28,19 +29,26 @@ export default {
       return this.$store.getters.messages;
     },
   },
+  mounted() {
+    var objDiv = document.getElementById("box");
+
+    setTimeout(() => {
+      objDiv.scroll({ top: objDiv.scrollHeight, behavior: "smooth" });
+    }, 50);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 article {
-  // background: #1e1e1e;
-  padding: 1.5rem 0;
-  min-height: 200px;
-  background: $black;
-  margin: 0;
-  border-radius: 0 0 5px 5px;
-  max-height: 330px;
+  font-family: "SouceSansPro-ExtraLight", sans-serif;
+
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #00000014;
+  height: 390px;
   overflow-y: auto;
+  margin-bottom: 1.5rem;
   &::-webkit-scrollbar {
     width: 5px; /* width of the entire scrollbar */
     // display: none;
@@ -66,6 +74,9 @@ article {
 .message {
   display: flex;
   justify-content: flex-end;
+  &:last-child {
+    margin-bottom: 0;
+  }
   &.from {
     justify-content: flex-start;
   }
@@ -76,17 +87,33 @@ article {
     border-radius: 15px;
     padding: 3px;
     cursor: pointer;
+    display: flex;
     span {
       white-space: pre-line;
       display: block;
-      padding: 3px 8px;
+      padding: 3px 0 3px 8px;
       color: #fff;
-      font-size: 13px;
+      font-size: 14px;
       border-radius: 3px;
+      margin: auto 0;
+      font-weight: 200;
     }
     &.sender {
       margin: 0 auto auto 0;
     }
+    .date {
+      font-weight: 100;
+      color: #fff;
+      font-size: 10px;
+      margin: auto 5px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  article {
+    height: 250px;
   }
 }
 </style>

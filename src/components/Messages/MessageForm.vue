@@ -18,8 +18,9 @@ form {
   flex-direction: column;
   background: #fff;
   border-radius: $border-radius-lg;
-  margin: 1.5rem 0 0;
+  margin: 0;
   position: relative;
+  border: 1px solid #ccc;
   cursor: pointer;
   button {
     border: 0;
@@ -70,26 +71,18 @@ export default {
     focusTextarea () {
       document.getElementById("keyboard").focus()
     },
-    sendMessage() {
+    async sendMessage () {
     let user = this.$store.getters.selected_chat.user;
       if (user.messages) {
         console.log(user.messages);
       }
-      console.log(this.text)
-      this.$store.commit("add_message", {
-        message_id: 4,
-        sender_id: 1,
-        message: {
-          type: "text",
-          text: `${this.text}`,
-          date: "06.04.2022",
-        },
-      });
       this.$socket.emit("chat message", this.text)
-      this.$socket.on("chat message", (arg) => {
-        console.log(arg)
-      })
       this.text = null;
+            var objDiv = document.getElementById("box");
+      
+        setTimeout(() => {
+          objDiv.scroll({ top: objDiv.scrollHeight, behavior: 'smooth' });
+        }, 50);
     },
   },
 };
