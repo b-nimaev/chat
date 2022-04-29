@@ -56,11 +56,11 @@ export default {
 
       this.$axios({
         method: "post",
-        url: "http://192.168.1.3:3000/user/auth",
-        params: {
-          username: this.username.toLowerCase(),
+        url: "http://localhost:3000/user/auth",
+        data: {
+          username: this.username,
           password: this.password,
-        },
+        }
       })
         .then((response) => {
           if (response.data == false) {
