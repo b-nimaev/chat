@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li>
-        <router-link to="/streams">Streams</router-link>
+        <router-link to="/streams">Поиск собеседника</router-link>
       </li>
     </ul>
   </div>
@@ -18,7 +18,7 @@
       padding: 0;
       li {
         a {
-          text-shadow: 0 2px 3px #5bffb5;
+          // text-shadow: 0 2px 3px #5bffb5;
           font-size: 16px;
           color: $white;
           &.router-link-active {

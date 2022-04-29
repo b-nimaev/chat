@@ -46,8 +46,8 @@ aside {
     width: 100%;
     max-height: 600px;
     display: flex;
-    border-left: 1px solid #111;
-    background: #000;
+    border-left: 1px solid #e1c5c5;
+    background: #ffffff03;
     h6 {
       color: #fff;
       margin: auto;

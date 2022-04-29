@@ -2,7 +2,7 @@
   <header>
 
     <app-logotype />
-    <app-navbar />
+    <app-navbar v-if="!mobile" />
 
     <div class="user" v-if="logged">
       <div
@@ -122,6 +122,9 @@ export default {
     logged: function () {
       return this.$store.getters.token;
     },
+    mobile: function () {
+      return this.$store.getters.mobile;
+    },
   },
 };
 </script>
@@ -175,8 +178,8 @@ $background-player-active: #9a7ca7;
 
 header {
   display: flex;
-  margin-bottom: 1rem;
-  padding: 0.8rem 0;
+  margin-bottom: 0;
+  padding: 12px 0;
   .user {
     margin: auto 0 auto auto;
     user-select: none;

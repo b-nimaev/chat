@@ -78,7 +78,6 @@ export default {
       }
       this.$socket.emit("chat message", this.text)
       this.text = null;
-      console.log(document.getElementById("box"))
             var objDiv = document.getElementById("box");
       
         setTimeout(() => {

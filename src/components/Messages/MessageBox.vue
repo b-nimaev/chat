@@ -29,11 +29,20 @@ export default {
       return this.$store.getters.messages;
     },
   },
+  mounted() {
+    var objDiv = document.getElementById("box");
+
+    setTimeout(() => {
+      objDiv.scroll({ top: objDiv.scrollHeight, behavior: "smooth" });
+    }, 50);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 article {
+  font-family: "SouceSansPro-ExtraLight", sans-serif;
+
   padding: 1rem;
   border-radius: 10px;
   background-color: #00000014;
@@ -79,7 +88,6 @@ article {
     padding: 3px;
     cursor: pointer;
     display: flex;
-    font-family: "Montserrat", sans-serif;
     span {
       white-space: pre-line;
       display: block;
@@ -88,7 +96,7 @@ article {
       font-size: 14px;
       border-radius: 3px;
       margin: auto 0;
-      font-weight: 400;
+      font-weight: 200;
     }
     &.sender {
       margin: 0 auto auto 0;
@@ -105,7 +113,7 @@ article {
 
 @media screen and (max-width: 768px) {
   article {
-    height: 250px
+    height: 250px;
   }
 }
 </style>

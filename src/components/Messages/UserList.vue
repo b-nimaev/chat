@@ -180,6 +180,8 @@ ul {
       }
       &.active {
         background: #1f1d1d36;
+        border-radius: $border-radius-lg;
+
         left: 3px;
         &:after {
           right: 100%;
@@ -187,7 +189,8 @@ ul {
       }
     }
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       background-color: #1f1d1d0f;
       .item:not(.active) {
         left: 3px;
