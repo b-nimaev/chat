@@ -15,16 +15,16 @@ const getUsers = function (request, response) {
   });
 };
 
-const authorizationUser = function (request, response) {
+const auth = function (request, response) {
   if (!request.body) return response.sendStatus(400);
   const userName = request.body.username;
   const userPassword = request.body.password;
   const user = new User({ name: userName, password: userPassword });
-  console.log(userName)
-  // user.save(function (err) {
-  //   if (err) return console.log(err);
-  //   response.send("false")
-  // });
+  console.log(user);
+  user.find(function (err) {
+    if (err) return console.log(err);
+    response.send("false")
+  });
 };
 
-export default { register, authorizationUser };
+export default { register, auth };

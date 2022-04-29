@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // установка схемы
 const userScheme = new Schema({
   name: String,
-  age: Number,
+  password: String
 });
 
 // установка модели
