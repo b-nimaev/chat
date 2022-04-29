@@ -85,13 +85,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 aside {
-  height: fit-content;
   padding: 0;
   margin: 0;
-  max-height: 100%;
+  height: auto;
+  min-height: 300px;
   width: 330px;
   overflow-y: auto;
-
+  max-height: 600px;
   &::-webkit-scrollbar {
     // width: 5px; /* width of the entire scrollbar */
     display: none;
@@ -179,7 +179,9 @@ ul {
         right: calc(100% + 5px);
       }
       &.active {
-        background: $gray-800;
+        background: #1f1d1d36;
+        border-radius: $border-radius-lg;
+
         left: 3px;
         &:after {
           right: 100%;
@@ -187,12 +189,19 @@ ul {
       }
     }
 
-    &:hover, &:active {
-      background-color: $gray-900;
+    &:hover,
+    &:active {
+      background-color: #1f1d1d0f;
       .item:not(.active) {
         left: 3px;
       }
     }
+  }
+}
+@media screen and (max-width: 992px) {
+  aside {
+    min-height: auto;
+    width: 100%;
   }
 }
 </style>

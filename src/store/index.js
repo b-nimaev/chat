@@ -1,16 +1,18 @@
-import {
-  createStore
-} from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    users: [{
+    userinfo: "",
+    themeColor: "" || localStorage.getItem("theme"),
+    users: [
+      {
         id: 1,
         first_name: "Alexandr",
         last_name: "Balzhinimaev",
         username: "@alexandrbnimaev",
         avatar: "cats",
-        messages: [{
+        messages: [
+          {
             message_id: 1,
             sender_id: 2,
             message: {
@@ -54,7 +56,8 @@ export default createStore({
         last_name: "Abramova",
         username: "@katyabramova",
         avatar: "katya",
-        messages: [{
+        messages: [
+          {
             message_id: 1,
             sender_id: 2,
             message: {
@@ -80,7 +83,7 @@ export default createStore({
         last_name: "b-nimaev",
         username: "@sblzh",
         avatar: "",
-        messages: []
+        messages: [],
       },
       {
         id: 4,
@@ -88,7 +91,7 @@ export default createStore({
         last_name: "Haruno",
         username: "@sakuraharuno",
         avatar: "sakura",
-        messages: []
+        messages: [],
       },
       {
         id: 5,
@@ -96,7 +99,7 @@ export default createStore({
         last_name: "Smith",
         username: "@summersmith",
         avatar: "summer",
-        messages: []
+        messages: [],
       },
       {
         id: 6,
@@ -104,8 +107,8 @@ export default createStore({
         last_name: "Killer",
         username: "@username",
         avatar: "killer",
-        messages: []
-      }
+        messages: [],
+      },
     ],
     selected_chat: "",
     messages: "",
@@ -115,71 +118,109 @@ export default createStore({
       geoposition: "" || localStorage.getItem("geoposition"),
       registered: "" || localStorage.getItem("registered"),
       gender: {
-        male: '' || localStorage.getItem("male"),
-        female: "" || localStorage.getItem("female")
-      }
+        male: "" || localStorage.getItem("male"),
+        female: "" || localStorage.getItem("female"),
+      },
     },
     me: {
-      avatar: ''
-    }
+      avatar: "",
+    },
+    auth: {
+      username: "",
+      password: "",
+    },
+    register: {
+      username: "",
+      password: "",
+    },
   },
   getters: {
+    themeColor: (state) => {
+      return state.themeColor
+    },
     selected_chat: (state) => {
-      return state.selected_chat
+      return state.selected_chat;
     },
     users: (state) => {
-      return state.users
+      return state.users;
     },
     messages: (state) => {
-      return state.messages
+      return state.messages;
     },
     token: (state) => {
-      return state.token
+      return state.token;
     },
     mobile: (state) => {
-      return state.mobile
+      return state.mobile;
     },
     base_search: (state) => {
-      return state.stream_settings
+      return state.stream_settings;
     },
     me: (state) => {
-      return state.me
-    }
+      return state.me;
+    },
+    userinfo: (state) => {
+      return state.userinfo;
+    },
+    auth_data: (state) => {
+      return state.auth;
+    },
+    register_data: (state) => {
+      return state.register;
+    },
   },
   mutations: {
-    select_chat (state, user) {
-      state.selected_chat = user
+    themeColor(state, theme) {
+      state.themeColor = theme
+    },
+    userinfo(state, info) {
+      state.userinfo = info;
+    },
+    select_chat(state, user) {
+      state.selected_chat = user;
     },
     add_message(state, message) {
-      state.selected_chat.user.messages.push(message)
+      state.selected_chat.user.messages.push(message);
     },
     messages_update(state) {
       if (state.selected_chat.user.messages) {
-        state.messages = state.selected_chat.user.messages
+        state.messages = state.selected_chat.user.messages;
       } else {
-        state.messages = []
+        state.messages = [];
       }
     },
-    login (state, token) {
-      state.token = token
+    login(state, token) {
+      state.token = token;
     },
     logout(state) {
-      state.token = ''
+      state.token = "";
     },
     mobile: (state, bool) => {
-      state.mobile = bool
+      state.mobile = bool;
     },
     base_search: (state, presets) => {
-      state.stream_settings = presets
+      state.stream_settings = presets;
     },
     me: (state, data) => {
-      state.me = data
-    }
+      state.me = data;
+    },
+    auth: (state, data) => {
+      state.auth.username = data.username;
+      state.auth.password = data.password;
+    },
+    register: (state, data) => {
+      if (data.username) {
+        state.register.username = data.username;
+      }
+      if (data.password) {
+        state.register.password = data.password;
+      }
+    },
   },
   actions: {
     select_chat(state, user) {
-      state.selected_chat = user
-    }
+      state.selected_chat = user;
+    },
   },
   modules: {},
 });

@@ -4,10 +4,6 @@
     <MessageBox />
     <KeyboardComponent />
   </aside>
-
-  <aside class="null" v-else>
-    <h6>Select chat a start messaging</h6>
-  </aside>
 </template>
 
 <script>
@@ -34,8 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 aside {
-  padding: 1.5rem;
   width: 100%;
+  // border-left: 1px solid #ffffff50;
+  padding: .5rem;
   &.null {
     height: 100%;
     display: flex;

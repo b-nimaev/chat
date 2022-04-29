@@ -2,6 +2,7 @@ require('dotenv').config();
 const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const { ObjectId } = require('mongodb');
 let app = require("express")();
 const MongoClient = require("mongodb").MongoClient;
 const mongoClient = new MongoClient(process.env.connect_string);
@@ -27,6 +28,7 @@ mongoClient.connect(function (err, client) {
 });
 
 app.post('/user/register', async function (req, res) {
+  console.log(req.query)
   if (req.query.username == null) return res.sendStatus(400)
 
   const collection = app.locals.collection
@@ -41,39 +43,80 @@ app.post('/user/register', async function (req, res) {
 
     return insertDocument
   } catch (err) {
+    console.log(err)
     res.send(err)
   }
 })
 
-app.post('/user/auth', async function (req, res) {
-  console.log(typeof (req.query.name))
-  console.log(typeof (req.query.password))
+app.post("/user/username_check", async function (req, res) {
+  console.log(req.query);
+  if (req.query.username == null) return res.sendStatus(400);
 
+  const collection = app.locals.collection;
+
+try {
+    return await collection.findOne(req.query).then((data) => {
+      if (data) {
+        res.send(data)
+      } else {
+        res.send(false)
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+app.post('/user/auth', async function (req, res) {
   const collection = app.locals.collection
   await collection.findOne({
-      "username": req.query.name,
+      "username": req.query.username,
       "password": req.query.password
     })
     .then((document) => {
-      res.send(document)
+      if (document) {
+        res.send(document);
+      } else {
+        res.send(false)
+      }
     })
-    .catch((err) => {
+    .catch(() => {
       res.sendStatus(400)
-      console.log(err)
     })
 })
 
+app.post("/user/get_userinfo", async function (req, res) {
+  const collection = app.locals.collection;
+  await collection
+    .findOne({
+      _id: ObjectId(req.query.token),
+    })
+    .then((document) => {
+      if (document) {
+        res.send(document);
+      } else {
+        res.send(false);
+      }
+    })
+    .catch(() => {
+      res.sendStatus(400);
+    });
+});
+
 let io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:8080",
+  origin: "http://192.168.1.3:8080",
     allowedHeaders: ["my-custom-header"],
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
+
 io.on('connection', (socket) => {
   console.log('a user connected');
+  console.log(socket)
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });

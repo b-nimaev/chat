@@ -1,37 +1,21 @@
 <template>
-  <aside>
-    <h4>Settings</h4>
-    <div class="group">
-      <h5>Color scheme:</h5>
-      <switcherComponent/>
-    </div>
-    <div class="searchGeoParams">
-      <h5>Search for GPS</h5>
-      <switcherGPSComponent/>
-    </div>
-  </aside>
+  <div class="settings">
+    <switcherComponent />
+  </div>
 </template>
 
 <script>
 import switcherComponent from "@/components/Settings/switcherComponent.vue";
-import switcherGPSComponent from "@/components/Settings/GPSComponent.vue";
 export default {
   components: {
-    switcherComponent,
-    switcherGPSComponent,
+    switcherComponent
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.group, .searchGeoParams {
-  display: flex;
-  margin: 15px 0;
-  h5 {
-    margin: auto 15px auto 0;
-  }
-}
-aside {
-  padding: 30px
+.settings {
+  padding: .5rem;
+
 }
 </style>

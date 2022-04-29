@@ -3,10 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import axios from "axios";
 import io from 'socket.io-client'
+
 const socket = {
-    install: (app) =>  {
-        app.config.globalProperties.$socket = io("http://localhost:3000")
+    install: (app) => {
+        app.config.globalProperties.$socket = io("http://192.168.1.3:3000")
+        app.config.globalProperties.$axios = axios
     }
 }
 import  '@/assets/style.scss'

@@ -1,107 +1,96 @@
 <template>
-  <div class="row">
-    <div class="col col-lg-6 col-xl-5 m-auto">
-      <form>
-        <h4 class="title"><span>a</span>noname</h4>
-        <h5 class="subtitle">another social network for dating</h5>
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            v-model="username"
-            v-bind:class="{ valid: usernameValid, invalid: !usernameValid }"
-            @change="usernameCheck"
-            autocomplete="off"
-          />
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            v-bind:class="{ valid: passwordValid, invalid: !passwordValid }"
-            v-model="password"
-            autocomplete="off"
-          />
-          <p v-if="!passwordValid" class="text-dangerous">
-            Minimum 8 characters!
-          </p>
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password2"
-            v-bind:class="{ valid: passwordValid2, invalid: !passwordValid2 }"
-            v-model="password2"
-            autocomplete="off"
-          />
-          <p v-if="!passwordValid2" class="text-dangerous">
-            passwords are different
-          </p>
-        </div>
-        <!-- <button @click.prevent="auth">Login</button> -->
-        <button @click.prevent="register">Register</button>
-        <p class="privacy">By creating an account, I agree to Anoname's Terms of Service and Privacy Policy</p>
-        <p class="yet">
-          Already have an account? <router-link to="/auth">login</router-link>
-        </p>
-        <p v-if="!passwordLengthValid" class="text-dangerous">
-          Minimum 8 characters!
-        </p>
-      </form>
+  <form>
+    <form-heading />
+
+    <username-input></username-input>
+
+    <div class="input-group">
+      <label for="password">Пароль</label>
+      <input
+        type="password"
+        id="password"
+        v-bind:class="{ valid: passwordValid, invalid: !passwordValid }"
+        v-model="password"
+        autocomplete="off"
+      />
+      <p v-if="!passwordValid" class="text-dangerous">Minimum 8 characters!</p>
     </div>
-  </div>
+
+    <div class="input-group">
+      <label for="password">Подтверждение пароля</label>
+      <input
+        type="password"
+        id="password2"
+        v-bind:class="{ valid: passwordValid2, invalid: !passwordValid2 }"
+        v-model="password2"
+        autocomplete="off"
+      />
+      <p v-if="!passwordValid2" class="text-dangerous">
+        passwords are different
+      </p>
+    </div>
+    <button @click.prevent="register">Register</button>
+    <p class="privacy">
+      By creating an account, I agree to Anoname's Terms of Service and Privacy
+      Policy
+    </p>
+    <p class="yet">
+      Already have an account? <router-link to="/auth">login</router-link>
+    </p>
+    <p v-if="!passwordLengthValid" class="text-dangerous">
+      Minimum 8 characters!
+    </p>
+
+  </form>
 </template>
 
 <script>
-import axios from "axios";
+import heading from '@/components/Auth/FormHeading.vue'
+import username from '@/components/Register/UsernameInput.vue'
 export default {
   data() {
     return {
-      username: "",
       password: "",
       password2: "",
       trust: false,
-      usernameValid: true,
       passwordValid: true,
       passwordValid2: true,
-      passwordLengthValid: true 
+      passwordLengthValid: true,
+      error: "",
     };
+  },
+  components: {
+    'form-heading': heading,
+    'username-input': username
   },
   methods: {
     register() {
+      let username = this.$store.getters.register_data.username,
+          password = this.$store.getters.register_data.password
+
       if (
-        this.username.length == 0 ||
-        this.password.length == 0 ||
-        this.usernameValid == false ||
-        this.passwordValid == false ||
-        this.passwordValid2 == false
+        username == false ||
+        password == false
       )
         return;
 
-      axios({
+      this.$axios({
         method: "post",
-        url: "http://localhost:3000/user/register",
+        url: "http://192.168.1.3:3000/user/register",
         params: {
-          username: this.username.toLowerCase(),
-          password: this.password,
+          username: username,
+          password: password,
         },
-      })
+      }).then((res) => {
+        if (res.data.code == 11000) {
+          this.error = "Username is registered!";
+        } else {
+          this.$router.push("profile")
+        }
+      });
     },
   },
   watch: {
-    username: function () {
-      if (!/^[a-zA-Z0-9_]+$/.test(this.username)) {
-        this.usernameValid = false;
-      } else {
-        this.usernameValid = true;
-      }
-      if (this.username.length == 0) {
-        this.usernameValid = true;
-      }
-    },
 
     password: function () {
       if (this.password.length < 8 || this.password.length > 24) {
@@ -112,17 +101,23 @@ export default {
 
       if (this.password.length == 0) {
         this.passwordValid = true;
+        this.$store.commit("register", {
+          password: ""
+        })
       }
     },
 
     password2: function () {
       if (this.password2 !== this.password) {
         this.passwordValid2 = false;
+        this.$store.commit("register", {
+          password: ""
+        })
       } else {
+        this.$store.commit("register", {
+          password: this.password
+        })
         this.passwordValid2 = true;
-        if (this.password2.length < 8 || this.password2.length > 24) {
-          this.passwordLengthValid = false;
-        }
       }
     },
   },
@@ -131,19 +126,9 @@ export default {
 
 <style lang="scss" scoped>
 $form-width: 250px;
-h4.title {
-  cursor: pointer;
-  user-select: none;
-  span {
-    color: $green;
-  }
-}
-.subtitle {
-  color: #777;
-  font-weight: 400;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
+.error {
+  text-align: left;
+  color: $red;
 }
 p.privacy {
   margin: 15px auto 0;
@@ -157,10 +142,11 @@ p.yet {
 }
 form {
   color: #fff;
-  background: $black;
+  background: #0000000f;
   padding: 2rem 2.5rem 3rem;
-  box-shadow: $box-shadow;
   border-radius: $border-radius-lg;
+  margin: auto;
+  width: 500px;
   .input-group {
     margin: 15px 0;
 
@@ -180,7 +166,7 @@ form {
       margin-right: 0;
       margin-bottom: 5px;
       padding: 5px 0;
-      color: #777;
+      color: #fff;
     }
     input {
       border: 0;
@@ -194,10 +180,10 @@ form {
       font-size: 16px;
       border: 0;
       cursor: pointer;
-      color: #777;
       box-shadow: 0px 1px 3px 1px $green;
       &#username {
         text-transform: lowercase;
+        color: #fff;
       }
       &.valid {
         box-shadow: 2px 3px 3px 1px $green;
@@ -218,6 +204,19 @@ form {
         }
       }
     }
+
+    .label {
+      display: flex;
+      color: #fff;
+      label {
+        margin: auto 0;
+      }
+      p {
+        margin: auto 0 auto auto;
+        font-size: 12px;
+        line-height: 1;
+      }
+    }
   }
 }
 button {
@@ -235,6 +234,17 @@ button {
   }
   &:active {
     background-color: $green-800;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  form {
   }
 }
 </style>
