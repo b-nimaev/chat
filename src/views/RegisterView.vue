@@ -76,8 +76,8 @@ export default {
 
       this.$axios({
         method: "post",
-        url: "http://192.168.1.3:3000/user/register",
-        params: {
+        url: "http://localhost:3000/user/register",
+        data: {
           username: username,
           password: password,
         },
