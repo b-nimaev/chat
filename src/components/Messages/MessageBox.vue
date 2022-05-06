@@ -116,4 +116,11 @@ article {
     height: 250px;
   }
 }
+
+@media screen and (max-width: 1400px) {
+  article {
+    height: 270px
+  }
+}
+
 </style>

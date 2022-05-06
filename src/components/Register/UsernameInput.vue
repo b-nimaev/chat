@@ -20,55 +20,68 @@ export default {
     return {
       username: "",
       valid: true,
-      errors: {},
+      errors: {
+        text: "",
+        exsists: ""
+      },
     };
   },
   watch: {
     username: function () {
       if (!/^[a-zA-Z0-9_]+$/.test(this.username)) {
+        this.__reset()
         this.valid = false;
-        this.$store.commit("register", {
-          username: this.username,
-        });
         this.errors.text = "Допустимы только латиница, цифры, и знак _";
       } else {
         this.valid = true;
         this.errors.text = "";
-        this.$store.commit("register", {
-          username: this.username,
-        });
       }
+
       // If login is empty doesn't commit
       if (this.username.length == 0) {
         this.errors.text = "";
         this.valid = true;
         this.$store.commit("register", {
-          username: ""
+          username: "",
         });
       }
-
+    },
+  },
+  computed: {
+    password () {
+      return this.$store.getters.register_data.password
+    }
+  },
+  methods: {
+    async usernameCheck () {
       this.$axios({
         method: "post",
-        url: "http://192.168.1.3:3000/user/username_check",
-        params: {
-          username: this.username.toLowerCase(),
+        url: "http://localhost:3000/user/username_check",
+        data: {
+          username: this.username
         },
-      }).then((res) => {
-        if (res.data) {
+      }).then((response) => {
+        console.log(response);
+        if (response.data) {
           this.errors.exists = "Пользователь существует!";
-          this.$store.commit("register", {
-            username: ""
-          });
+          this.__reset()
         } else {
           this.errors.exists = "";
           this.valid = true;
           this.$store.commit("register", {
             username: this.username,
-          });
+            password: this.passoword()
+          })
         }
       });
     },
-  },
+    __reset () {
+      this.$store.commit("register", {
+        username: "",
+        password: this.password()
+      })
+    }
+  }
 };
 </script>
 

@@ -131,7 +131,7 @@ article {
       p {
         margin: auto;
         color: #35e1d1;
-        font-size: 18px;
+        font-size: 12px;
       }
       span {
         display: block;

@@ -63,6 +63,7 @@ export default {
         }
       })
         .then((response) => {
+          console.log(response)
           if (response.data == false) {
             this.username = "";
             this.password = "";
@@ -122,13 +123,7 @@ h4.title {
     color: $green;
   }
 }
-.subtitle {
-  color: #fff;
-  font-weight: 400;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
-}
+
 p.yet {
   margin: 15px auto 0;
   a {
@@ -136,7 +131,7 @@ p.yet {
   }
 }
 form {
-  background: #0000000f;
+  // background: #0000000f;
   width: 500px;
   color: #fff;
   padding: 2rem 2.5rem 3rem;

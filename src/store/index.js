@@ -4,15 +4,37 @@ export default createStore({
   state: {
     userinfo: "",
     themeColor: "" || localStorage.getItem("theme"),
-    users: [
-      {
+
+    selected_chat: "",
+    messages: "",
+    token: "" || localStorage.getItem("user"),
+    mobile: "",
+    stream_settings: {
+      geoposition: "" || localStorage.getItem("geoposition"),
+      registered: "" || localStorage.getItem("registered"),
+      gender: {
+        male: "" || localStorage.getItem("male"),
+        female: "" || localStorage.getItem("female"),
+      },
+    },
+    me: {
+      avatar: "",
+    },
+    auth: {
+      username: "",
+      password: "",
+    },
+    register: {
+      username: "",
+      password: "",
+    },
+    users: [{
         id: 1,
         first_name: "Alexandr",
         last_name: "Balzhinimaev",
         username: "@alexandrbnimaev",
         avatar: "cats",
-        messages: [
-          {
+        messages: [{
             message_id: 1,
             sender_id: 2,
             message: {
@@ -56,8 +78,7 @@ export default createStore({
         last_name: "Abramova",
         username: "@katyabramova",
         avatar: "katya",
-        messages: [
-          {
+        messages: [{
             message_id: 1,
             sender_id: 2,
             message: {
@@ -110,29 +131,6 @@ export default createStore({
         messages: [],
       },
     ],
-    selected_chat: "",
-    messages: "",
-    token: "" || localStorage.getItem("user"),
-    mobile: "",
-    stream_settings: {
-      geoposition: "" || localStorage.getItem("geoposition"),
-      registered: "" || localStorage.getItem("registered"),
-      gender: {
-        male: "" || localStorage.getItem("male"),
-        female: "" || localStorage.getItem("female"),
-      },
-    },
-    me: {
-      avatar: "",
-    },
-    auth: {
-      username: "",
-      password: "",
-    },
-    register: {
-      username: "",
-      password: "",
-    },
   },
   getters: {
     themeColor: (state) => {
