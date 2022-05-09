@@ -5,17 +5,11 @@
         <h4>Base</h4>
         <p class="time">05:00</p>
       </div>
-      <form>
+      <form @submit.prevent="search">
         <div class="input-group">
           <input type="checkbox" id="geo" v-model="preset.geoposition" />
           <label :class="{ active: preset.geoposition }" for="geo"
             >Geolocation active</label
-          >
-        </div>
-        <div class="input-group">
-          <input type="checkbox" id="registered" v-model="preset.registered" />
-          <label :class="{ active: preset.registered }" for="registered"
-            >Only registered</label
           >
         </div>
         <div class="gender-group">
@@ -46,12 +40,6 @@
         <button class="search">Search</button>
       </form>
       <p class="concern"><span></span>243 concern users</p>
-      <ul style="list-style-type: none; text-align: left">
-        <li>Geo: {{ preset.geoposition }}</li>
-        <li>Reg: {{ preset.registered }}</li>
-        <li>Male: {{ preset.gender.male }}</li>
-        <li>Female: {{ preset.gender.female }}</li>
-      </ul>
     </div>
   </div>
 </template>
@@ -67,6 +55,9 @@ export default {
     changed: function () {
       console.log("changed");
     },
+    search () {
+      console.log('searching')
+    }
   },
 };
 </script>
@@ -135,7 +126,7 @@ form {
 
 .find {
   background: #0000000f;
-  width: 400px;
+  width: 350px;
   padding: 1.5rem;
   border-radius: $border-radius-lg;
 
@@ -160,10 +151,6 @@ form {
       font-size: 14px;
       line-height: 24px;
       color: #fff;
-      &:hover {
-        background: $green;
-        color: $dark;
-      }
     }
   }
 }

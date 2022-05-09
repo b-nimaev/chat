@@ -147,7 +147,7 @@ body {
   border-radius: 8px;
 
   &.dark-theme {
-    background-image: linear-gradient(45deg, #4e3f67, #183830)
+    background-image: linear-gradient(45deg, #171313, #1f1f1f)
   }
 }
 

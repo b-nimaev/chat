@@ -50,12 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-aside {
-  display: flex;
-  p {
-    margin: auto 0;
-  }
-}
 form {
   display: flex;
   margin: 0 0.5rem;

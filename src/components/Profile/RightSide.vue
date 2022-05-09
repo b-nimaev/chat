@@ -1,6 +1,7 @@
 <template>
   <section>
-    <div class="avatar-wrapper" @click="upload_file"></div>
+    <div class="avatar-wrapper"></div>
+    <router-link class="edit" to="settings">Редактировать</router-link>
     <div v-if="modal_active" class="modal-wrapper">
       <div class="modal">
         <div class="modal-header">
@@ -27,6 +28,10 @@
 </template>
 
 <style lang="scss" scoped>
+.edit {
+  margin: 10px 0;
+  display: block;
+}
 .image-wrapper {
   margin: auto;
   width: 300px;
@@ -125,7 +130,7 @@
 export default {
   data() {
     return {
-      modal_active: true,
+      modal_active: false,
       file: "",
       showPreview: false,
       imagePreview: "",

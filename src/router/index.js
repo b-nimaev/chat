@@ -4,6 +4,8 @@ import {
 } from "vue-router";
 import AuthView from "@/views/AuthView.vue";
 import RegisterView from "@/views/RegisterView.vue";
+import Settings from "@/views/Dashboard/DashboardSettings.vue";
+import PersonalSettings from "@/views/Settings/PersonalSettings.vue";
 
 const routes = [{
     path: "",
@@ -32,11 +34,29 @@ const routes = [{
 
   }, {
     path: "/settings",
-    component: () =>
-      import(
-        /* webpackChunkName: "DashboardSettings" */
-        "@/views/Dashboard/DashboardSettings.vue"
-      ),
+    component: Settings,
+    children: [
+      {
+        path: "personal-settings",
+        component: PersonalSettings
+      },
+      {
+        path: "personal-private-settings",
+        component: () =>
+          import(
+            /* webpackChunkName: "PersonalPrivateSettings" */
+            "@/views/Settings/PersonalPrivateSettings.vue"
+          )
+      },
+      {
+        path: "personal-common-settings",
+        component: () =>
+          import(
+            /* webpackChunkName: "PersonalCommonSettings" */
+            "@/views/Settings/PersonalCommonSettings.vue"
+          )
+      }
+    ]
   },
   {
     path: "/streams",
@@ -62,7 +82,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/auth', '/streams', '/register', '/'];
+  const publicPages = ['/auth', '/register', '/'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

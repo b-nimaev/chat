@@ -2,7 +2,7 @@
   <header>
 
     <app-logotype />
-    <app-navbar v-if="!mobile" />
+    <app-navbar v-show="logged" v-if="!mobile" />
 
     <div class="user" v-if="logged">
       <div

@@ -2,8 +2,8 @@ require("dotenv").config();
 import morgan from "morgan";
 import cors from "cors";
 import bodyParser from "body-parser";
-let app = require("express")();
 import user from "./api/routes/userRouter";
+let app = require("express")();
 
 app.use(cors());
 app.use(bodyParser.json());

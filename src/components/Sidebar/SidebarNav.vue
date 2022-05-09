@@ -16,7 +16,7 @@
       </router-link>
     </li>
     <li>
-      <router-link to="settings">
+      <router-link to="/settings">
         <span>Настройки</span>
       </router-link>
     </li>
