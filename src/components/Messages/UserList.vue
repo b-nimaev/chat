@@ -1,3 +1,4 @@
+              // :src="require(`@/assets/avatars/${user.avatar}.jpg`)"
 <template>
   <aside>
     <ul v-if="users">
@@ -43,12 +44,20 @@ export default {
     selected_chat() {
       return this.$store.getters.selected_chat;
     },
+    logged: function () {
+      return this.$store.getters.token;
+    },
     users() {
       return this.$store.getters.users;
     },
   },
   methods: {
     selectUser(username) {
+      console.log(this.users)
+      if (!this.users) {
+        return
+      }
+
       for (let i = 0; i < this.users.length; i++) {
         let current_element = this.users[i];
 

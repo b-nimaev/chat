@@ -56,7 +56,7 @@ export default {
 
       this.$axios({
         method: "post",
-        url: "http://localhost:3000/user/auth",
+        url: "//localhost:3000/user/auth",
         data: {
           username: this.username,
           password: this.password,
@@ -74,6 +74,7 @@ export default {
             localStorage.setItem("user", response.data._id);
             this.$store.commit("userinfo", {
               username: response.data.username,
+              avatar: response.data.avatar
             });
             this.$router.push("profile");
           }

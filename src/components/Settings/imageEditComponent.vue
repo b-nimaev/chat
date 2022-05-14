@@ -1,7 +1,7 @@
 <template>
   <aside>
     <p>Изображение профиля:</p>
-    <form @submit.prevent="submitFile(e)">
+    <form @submit.prevent="submitFile">
       <div class="input-group">
         <label for="imageFile" v-show="!showPreview"
           >Прикрепить изображение</label
@@ -31,10 +31,12 @@ export default {
     return {
       file: "",
       showPreview: false,
+      imagePreview: false
     };
   },
   methods: {
-    submitFile() {
+    submitFile: function (e) {
+      e.preventDefault()
       let formData = new FormData();
       formData.append("avatar", this.file);
       formData.append("user_id", this.$store.getters.token);
@@ -44,11 +46,18 @@ export default {
         url: "//localhost:3000/user/file-preview",
         data: formData,
       })
-        .then(function () {
-          console.log("SUCCESS!!");
+        .then((response) => {
+          if (response.status == 200) {
+            this.$store.commit("userinfo", {
+              avatar: response.data
+            })
+            this.showPreview = false
+            this.imagePreview = false
+          }
+          // console.log(document)
         })
-        .catch(function () {
-          console.log("FAILURE!!");
+        .catch(function (err) {
+          console.log(err)
         });
     },
     handleFileUpload() {

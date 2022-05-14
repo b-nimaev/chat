@@ -8,7 +8,7 @@ import io from 'socket.io-client'
 
 const socket = {
     install: (app) => {
-        app.config.globalProperties.$socket = io("http://localhost:3000")
+        app.config.globalProperties.$socket = io("//localhost:3000")
         app.config.globalProperties.$axios = axios
     }
 }

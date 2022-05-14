@@ -13,6 +13,8 @@ import navbar from "@/components/Sidebar/SidebarNav.vue";
 export default {
   components: {
     "user-avatar": avatar,
+
+    
     "user-data": userdata,
     "sidebar-nav": navbar,
   },

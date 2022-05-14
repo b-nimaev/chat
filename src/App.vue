@@ -57,22 +57,18 @@ export default {
     window.addEventListener("resize", this.myEventHandler);
   },
   beforeMount () {
-    if (this.theme == 'dark') {
-      document.getElementById("body").classList.add("dark-theme")
-      document.getElementById("app").classList.add("dark-theme")
-    } else {
-      document.getElementById("body").classList.remove("dark-theme")
-      document.getElementById("app").classList.remove("dark-theme")
+    if (this.theme) {
+      document.getElementById("body").classList.add(`${this.theme}-theme`)
+      document.getElementById("app").classList.add(`${this.theme}-theme`)
     }
-  },
-  mounted() {
+
     if (this.logged) {
       this.$axios({
         method: "post",
-        url: "http://192.168.1.3:3000/user/get_userinfo",
-        params: {
+        url: "//localhost:3000/user/get_userinfo",
+        data: {
           token: this.logged
-        },
+        }
       }).then((response) => {
         if (response) {
           console.log(response)
@@ -82,6 +78,8 @@ export default {
         }
       })
     }
+  },
+  mounted() {
     
     this.$socket.on("chat message", (arg) => {
       this.$store.commit("add_message", {

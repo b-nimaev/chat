@@ -6,12 +6,12 @@
       </router-link>
     </li>
     <li>
-      <router-link to="friends">
+      <router-link to="/friends">
         <span>Контакты</span>
       </router-link>
     </li>
     <li>
-      <router-link to="messages">
+      <router-link to="/messages">
         <span>Сообщения</span>
       </router-link>
     </li>
