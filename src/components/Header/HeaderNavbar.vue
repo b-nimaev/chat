@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li>
-        <router-link to="/streams">Поиск собеседника</router-link>
+        <router-link to="/streams">Игры</router-link>
       </li>
     </ul>
   </div>

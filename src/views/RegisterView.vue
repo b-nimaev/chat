@@ -6,7 +6,7 @@
     <password-input />
     <button @click.prevent="register">Register</button>
     <p class="yet">
-      Already have an account? <router-link to="/auth">login</router-link>
+      У вас имеется аккаунт? <router-link to="/auth">Войти</router-link>
     </p>
   </form>
 </template>
@@ -32,8 +32,8 @@ export default {
   methods: {
     register() {
       if (
-        this.username() == false ||
-        this.username() == false
+        this.$store.getters.register_data.username == false ||
+        this.$store.getters.register_data.password == false
       )
         return;
 
@@ -45,11 +45,7 @@ export default {
           password: this.password(),
         },
       }).then((res) => {
-        if (res.data.code == 11000) {
-          this.error = "Username is registered!";
-        } else {
-          this.$router.push("profile")
-        }
+        console.log(res)
       });
     },
   },

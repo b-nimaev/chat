@@ -1,11 +1,11 @@
 <template>
-  <a v-if="!mobile" @click.prevent="tohome" href="javascript:void(0)"
-    ><span>a</span>noname</a
+  <a v-if="!mobile" @click.prevent="tohome" href="javascript:void(0)">
+  <span>SSFFootball</span></a
   >
   <div v-else class="mobile-logotype">
     <button><span></span><span></span><span></span></button>
     <a v-if="mobile" @click.prevent="tohome" href="javascript:void(0)"
-      ><span>a</span>noname</a
+      ><span>SSF</span>Football</a
     >
   </div>
 </template>

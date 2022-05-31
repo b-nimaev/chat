@@ -24,7 +24,33 @@ var uploads = multer({
 // создаем объект MongoClient и передаем ему строку подключения
 const mongoClient = new MongoClient(process.env.connect_string);
 userRouter.use("/register", async function (req, res) {
-
+        try {
+            mongoClient.connect(function (err, client) {
+    
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(req.body)
+                client.db("axbn").collection("users").findOne({
+                    username: req.body.username
+                }).then((document) => {
+                    if (!document) {
+                        client.db("axbn").collection("users").insertOne({
+                            username: req.body.username,
+                            password: req.body.password
+                        }).then(result => {
+                            res.send(result)
+                        })
+                    }
+                    else {
+                        res.sendStatus(409)
+                    }
+                    client.close();
+                })
+            });
+        } catch (err) {
+            console.log(err)
+        }
 });
 
 userRouter.use("/auth", async function (req, res) {
