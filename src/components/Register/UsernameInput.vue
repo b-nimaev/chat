@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   data() {
     return {
@@ -22,66 +23,66 @@ export default {
       valid: true,
       errors: {
         text: "",
-        exsists: ""
+        exsists: "",
       },
     };
   },
   watch: {
-    username: function () {
+    username: _.debounce(function () {
+      console.log("workin");
       if (!/^[a-zA-Z0-9_]+$/.test(this.username)) {
-        this.__reset()
+        this.__reset();
         this.valid = false;
         this.errors.text = "Допустимы только латиница, цифры, и знак _";
       } else {
         this.valid = true;
         this.errors.text = "";
+        this.usernameCheck();
       }
 
       // If login is empty doesn't commit
       if (this.username.length == 0) {
         this.errors.text = "";
         this.valid = true;
-        this.$store.commit("register", {
-          username: "",
-        });
+        this.usernameCheck();
       }
-    },
-  },
-  computed: {
-    password () {
-      return this.$store.getters.register_data.password
-    }
+    }, 100),
   },
   methods: {
-    async usernameCheck () {
+    async usernameCheck() {
+      console.log(this.username);
       this.$axios({
         method: "post",
         url: "http://localhost:3000/user/username_check",
         data: {
-          username: this.username
+          username: this.username,
         },
       }).then((response) => {
-        console.log(response);
-        if (response.data) {
-          this.errors.exists = "Пользователь существует!";
-          this.__reset()
-        } else {
-          this.errors.exists = "";
-          this.valid = true;
-          this.$store.commit("register", {
-            username: this.username,
-            password: this.passoword()
-          })
-        }
+          console.log(response);
+          if (response.data) {
+            this.errors.exists = "Пользователь существует!";
+            this.__reset();
+          } else {
+            console.log("fine");
+            this.errors.exists = "";
+            this.valid = true;
+            this.$store.commit("register", {
+              username: this.username,
+              password: this.$store.getters.register_data.password,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    __reset() {
+      this.$store.commit("register", {
+        username: null,
+        password: this.$store.getters.register_data.password,
       });
     },
-    __reset () {
-      this.$store.commit("register", {
-        username: "",
-        password: this.password()
-      })
-    }
-  }
+  },
 };
 </script>
 

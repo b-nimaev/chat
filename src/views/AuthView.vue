@@ -171,17 +171,17 @@ form {
       font-size: 16px;
       border: 0;
       cursor: pointer;
-      box-shadow: 0px 1px 3px 1px $green;
+      box-shadow: 0px 2px 0px 2px #000000;
       &#username {
         text-transform: lowercase;
       }
       &.valid {
-        box-shadow: 2px 3px 3px 1px $green;
+        box-shadow: 0px 2px 0px 2px #000000;
         &:focus {
-          box-shadow: 1px 2px 3px 1px $green-500;
+          box-shadow: 0px 2px 0px 2px #000000
         }
         &:hover {
-          box-shadow: 1px 2px 3px 1px $green-500;
+          box-shadow: 0px 2px 0px 2px #000000;
         }
       }
       &.invalid {
@@ -212,6 +212,9 @@ button {
   &:active {
     background-color: $green-800;
   }
+}
+.white-theme {
+
 }
 @media screen and (max-width: 768px) {
   form {

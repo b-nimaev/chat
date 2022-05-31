@@ -20,4 +20,10 @@ h5.title {
   cursor: pointer;
   user-select: none;
 }
+
+.white-theme {
+  h5, .subtitle {
+    color: #000;
+  }
+}
 </style>

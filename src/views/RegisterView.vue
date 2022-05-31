@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     register() {
+      console.log(this.username)
       if (
         this.$store.getters.register_data.username == false ||
         this.$store.getters.register_data.password == false
@@ -41,11 +42,14 @@ export default {
         method: "post",
         url: "http://localhost:3000/user/register",
         data: {
-          username: this.username(),
-          password: this.password(),
+          username: this.username,
+          password: this.password,
         },
       }).then((res) => {
-        console.log(res)
+        if (res.data.acknowledged) {
+          this.$store.commit("login", res.data.insertedId)
+          this.$router.push("/profile")
+        }
       });
     },
   },
@@ -106,6 +110,7 @@ button {
 
 @media screen and (max-width: 576px) {
   form {
+    padding: 0;
   }
 }
 </style>

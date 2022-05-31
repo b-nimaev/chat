@@ -111,6 +111,7 @@ aside {
   display: flex;
   p {
     margin: auto 0;
+    text-align: left;
   }
 }
 form {
@@ -131,6 +132,25 @@ form {
     input {
       display: none;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  p {
+    font-size: $font-size-sm;
+  }
+  form {
+    .input-group {
+      label {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+.white-theme {
+  p {
+    color: #fff;
   }
 }
 </style>

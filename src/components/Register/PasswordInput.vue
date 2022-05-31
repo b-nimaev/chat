@@ -12,7 +12,7 @@
   </div>
 
   <div class="input-group">
-    <label for="password">Подтверждение пароля</label>
+    <label for="password2">Подтверждение пароля</label>
     <input
       type="password"
       id="password2"
@@ -28,8 +28,8 @@
 export default {
   data() {
     return {
-      password: "",
-      passowrd2: "",
+      password: this.$store.getters.register_data.password || "",
+      password2: "",
       valid: true,
       valid2: true,
       err: {
@@ -38,26 +38,54 @@ export default {
     };
   },
   watch: {
-    password () {
-      if (this.password.length < 8) {
+    password(password) {
+      // Проверка на длину
+      if (password.length < 8) {
         this.err.length = "Minimum 8 chars!";
-        if (this.password.length == 0) {
-          this.err.length = ""
+        if (password.length == 0) {
+          this.err.length = "";
         }
-      } else if (this.password.length > 24) {
+      } else if (password.length > 24) {
         this.err.length = "Maximum 24 chars!";
       } else {
-        this.err.length = ""
+        this.err.length = false;
+        this.checkPassword();
       }
     },
 
-    password2 () {
+    password2() {
       if (this.password2 == this.password) {
-        this.valid2 = true
+        this.valid2 = true;
+        this.checkPassword();
       } else {
-        this.valid2 = false
+        this.valid2 = false;
+        this.checkPassword(true);
       }
-    }
+    },
+  },
+  methods: {
+    checkPassword(bool) {
+      if (bool) {
+        this.$store.commit("register", {
+          username: this.$store.getters.register_data.username,
+          password: null,
+        });
+      } else {
+        if (this.password == this.password2) {
+          this.valud = true
+          this.$store.commit("register", {
+            username: this.$store.getters.register_data.username,
+            password: this.password,
+          });
+        } else {
+          this.valid2 = false
+          this.$store.commit("register", {
+            username: this.$store.getters.register_data.username,
+            password: null,
+          });
+        }
+      }
+    },
   },
 };
 </script>

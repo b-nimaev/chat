@@ -103,12 +103,8 @@ export default createStore({
       state.auth.password = data.password;
     },
     register: (state, data) => {
-      if (data.username) {
-        state.register.username = data.username;
-      }
-      if (data.password) {
-        state.register.password = data.password;
-      }
+      state.register.username = data.username;
+      state.register.password = data.password;
     },
   },
   actions: {

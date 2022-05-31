@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss">
 .left-side {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   ul {
     list-style-type: none;
     padding: 0;
@@ -83,7 +83,7 @@ export default {
 
 .settings {
   display: flex;
-  padding: 0.5rem;
+  padding: 0;
   aside {
     display: flex;
     p {
@@ -95,4 +95,16 @@ export default {
     }
   }
 }
+.white-theme {
+  .right-side {
+    background: rgb(255 53 127);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .left-side ul li a {
+    font-size: 12px;
+  }
+}
+
 </style>

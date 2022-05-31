@@ -123,9 +123,15 @@ body {
   min-height: 100vh;
   display: flex;
   background-size: cover;
-  background-image: linear-gradient(45deg, #286663, #276763);
+  background-image: linear-gradient(45deg, #101010, #643258);
   &.dark-theme {
-    background-image: linear-gradient(45deg, #0a0a0e, #20182f);
+    background-image: linear-gradient(45deg, #000000, #000000);
+  }
+  &.red-theme {
+    background-image: linear-gradient(45deg, #fe6c6c, #ff0237);
+  }
+  &.white-theme {
+    background-image: linear-gradient(45deg, #ffffff, #f5f5f5);
   }
 }
 
@@ -135,7 +141,7 @@ body {
   text-align: center;
   padding: 0px;
   margin: 0;
-  background-image: linear-gradient(45deg, #334955, #11a07d);
+  background-image: linear-gradient(45deg, #101010, #643258);
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -147,6 +153,12 @@ body {
   &.dark-theme {
     background-image: linear-gradient(45deg, #171313, #1f1f1f)
   }
+  &.white-theme {
+    background-image: linear-gradient(45deg, #fcf6f6, #ffffff)
+  }
+  &.red-theme {
+    background-image: linear-gradient(45deg, #ff3131, #fa3939);
+  }
 }
 
 .wrapper {
@@ -157,7 +169,7 @@ body {
   }
   main {
     flex: 1;
-    background: #0000000f;
+    background:rgb(240 232 232 / 6%);
     padding: 1rem;
     border-radius: $border-radius-lg;
   }

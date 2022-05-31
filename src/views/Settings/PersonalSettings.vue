@@ -16,3 +16,31 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 768px) {
+  h5 {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  section {
+    aside {
+      margin-bottom: 20px;
+      p {
+        text-align: left;
+      }
+    }
+  }
+}
+
+.white-theme {
+  h5 {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  p {
+  }
+}
+</style>

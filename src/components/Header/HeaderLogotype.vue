@@ -1,11 +1,11 @@
 <template>
   <a v-if="!mobile" @click.prevent="tohome" href="javascript:void(0)">
-  <span>SSFFootball</span></a
+  SS<span>Football</span></a
   >
   <div v-else class="mobile-logotype">
     <button><span></span><span></span><span></span></button>
     <a v-if="mobile" @click.prevent="tohome" href="javascript:void(0)"
-      ><span>SSF</span>Football</a
+      ><span>SS</span>Football</a
     >
   </div>
 </template>
@@ -62,12 +62,25 @@ div {
   a {
     width: 200px;
     text-align: center;
-    font-size: 1.55rem;
+    font-size: 1rem;
     display: block;
     margin: auto 2rem auto 0;
     color: $white;
+    font-weight: 800;
     span {
-      color: #56ffb5;
+      color: $primary;
+    }
+  }
+}
+.white-theme {
+  div a {
+    color: #000;
+  }
+  .mobile-logotype {
+    button {
+      span {
+        background: #000;
+      }
     }
   }
 }

@@ -25,12 +25,22 @@ export default {
   },
   methods: {
     themeColorChange: function (e) {
+      
+      document.getElementById("body").classList.remove(`${this.current_theme}-theme`)
+      document.getElementById("app").classList.remove(`${this.current_theme}-theme`)
+
+      // Получаем и коммитим цветовую схему котору выбрали
       this.$store.commit("themeColor", e.target.getAttribute("for"));
+
+      // Сохраняем в локалсторе
       localStorage.setItem("theme", e.target.getAttribute("for"));      
+      
       let old = document.querySelector('label[for='+ this.current_theme +']')
       let clicked_label = document.querySelector('label[for='+ e.target.getAttribute("for") +']')
+      
       old.classList.remove("active")
       clicked_label.classList.add("active")
+
 
       document.getElementById("body").classList.add(`${this.current_theme}-theme`)
       document.getElementById("app").classList.add(`${this.current_theme}-theme`)
@@ -68,6 +78,27 @@ form {
     input {
       display: none;
     }
+  }
+}
+p {
+  text-align: left;
+  font-size: $font-size-sm
+}
+
+@media screen and (max-width: 768px) {
+  form {
+    .input-group {
+      label {
+        padding: 2px 10px;
+        font-size: 12px
+      }
+    }
+  }
+}
+
+.white-theme {
+  p {
+    color: #fff;
   }
 }
 </style>
