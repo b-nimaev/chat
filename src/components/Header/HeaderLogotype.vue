@@ -1,10 +1,12 @@
 <template>
-  <a v-if="!mobile" @click.prevent="tohome" href="javascript:void(0)">
-  SS<span>Football</span></a
-  >
+  <a v-if="!mobile" @click.prevent="home" href="#">
+    <span>SS</span>
+    <span class="colored">Football</span>
+  </a>
+
   <div v-else class="mobile-logotype">
     <button><span></span><span></span><span></span></button>
-    <a v-if="mobile" @click.prevent="tohome" href="javascript:void(0)"
+    <a v-if="mobile" @click.prevent="home" href="#"
       ><span>SS</span>Football</a
     >
   </div>
@@ -18,7 +20,7 @@ export default {
     },
   },
   methods: {
-    tohome() {
+    home() {
       if (this.$store.getters.token) {
         this.$router.push("/");
       } else {
@@ -67,7 +69,7 @@ div {
     margin: auto 2rem auto 0;
     color: $white;
     font-weight: 800;
-    span {
+    .colored {
       color: $primary;
     }
   }

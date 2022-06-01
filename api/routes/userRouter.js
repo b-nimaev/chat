@@ -117,7 +117,8 @@ userRouter.use("/file-preview", uploads.single("avatar"), async function (req, r
     // { "avatar": req.file.destination + req.file.filename  }
     try {
         mongoClient.connect(function (err, client) {
-
+            console.log(req.file.filename)
+            console.log(req.file.destination)
             if (err) {
                 return console.log(err);
             }

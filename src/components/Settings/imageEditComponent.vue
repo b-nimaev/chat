@@ -31,16 +31,20 @@ export default {
     return {
       file: "",
       showPreview: false,
-      imagePreview: false
+      imagePreview: false,
     };
   },
   methods: {
+    logged: function () {
+      return this.$store.getters.token;
+    },
+    // Отправка файла
     submitFile: function (e) {
-      e.preventDefault()
+      e.preventDefault();
       let formData = new FormData();
       formData.append("avatar", this.file);
       formData.append("user_id", this.$store.getters.token);
-      console.log(formData)
+      console.log(formData);
       this.$axios({
         method: "post",
         url: "//localhost:3000/user/file-preview",
@@ -48,18 +52,31 @@ export default {
       })
         .then((response) => {
           if (response.status == 200) {
-            this.$store.commit("userinfo", {
-              avatar: response.data
-            })
-            this.showPreview = false
-            this.imagePreview = false
+            this.$axios({
+              method: "post",
+              url: "//localhost:3000/user/get_userinfo",
+              data: {
+                token: this.logged,
+              },
+            }).then((response) => {
+              if (response) {
+                console.log(response);
+                this.$store.commit("userinfo", response.data);
+              }
+            }).catch(err => {
+              console.log(err)
+            });
+            this.showPreview = false;
+            this.imagePreview = false;
           }
           // console.log(document)
         })
         .catch(function (err) {
-          console.log(err)
+          console.log(err);
         });
     },
+
+    // Чтение и запись
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
       let reader = new FileReader();

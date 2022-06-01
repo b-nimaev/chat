@@ -1,6 +1,6 @@
 <template>
   <aside>
-
+    <h4>Friends</h4>
   </aside>
 </template>
 
