@@ -6,6 +6,7 @@ import AuthView from "@/views/AuthView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import Settings from "@/views/Dashboard/DashboardSettings.vue";
 import PersonalSettings from "@/views/Settings/PersonalSettings.vue";
+import PathNotFound from "@/views/PageNotFound.vue";
 
 const routes = [{
     path: "",
@@ -74,6 +75,7 @@ const routes = [{
     path: "/register",
     component: RegisterView,
   },
+  { path: '/:pathMatch(.*)*', component: PathNotFound },
 ];
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
