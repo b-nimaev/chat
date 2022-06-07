@@ -9,9 +9,9 @@ import PersonalSettings from "@/views/Settings/PersonalSettings.vue";
 import PathNotFound from "@/views/PageNotFound.vue";
 
 const routes = [{
-    path: "",
-    redirect: "profile"
-  },
+  path: "",
+  component: () => import("@/views/AuthView.vue")
+},
   {
     path: "/profile",
     component: () => import("@/views/Dashboard/DashboardProfile.vue")
