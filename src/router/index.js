@@ -10,7 +10,7 @@ import PathNotFound from "@/views/PageNotFound.vue";
 
 const routes = [{
   path: "",
-  component: () => import("@/views/AuthView.vue")
+  redirect: "/profile"
 },
   {
     path: "/profile",

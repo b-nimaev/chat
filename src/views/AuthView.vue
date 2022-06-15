@@ -1,7 +1,9 @@
 <template>
   <form>
     <form-heading />
-
+    <div class="notify" v-if="notify">
+      <p>{{ notify }}</p>
+    </div>
     <div class="input-group">
       <label for="username">Логин</label>
       <input
@@ -45,6 +47,7 @@ export default {
       trust: false,
       usernameValid: true,
       passwordValid: true,
+      notify: false
     };
   },
   components: {
@@ -67,6 +70,7 @@ export default {
           if (response.data == false) {
             this.username = "";
             this.password = "";
+            this.notify = 'Пользователь не найден'
           } else {
             this.$store.commit("login", {
               token: response.data._id,
@@ -116,21 +120,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$form-width: 250px;
-h4.title {
-  cursor: pointer;
-  user-select: none;
-  span {
-    color: $green;
-  }
+.notify {
+    background: #ff3737;
+    padding: 5px;
+    margin: 10px 0 0;
+    border-radius: 0.3rem;
 }
-
 p.yet {
   margin: 15px auto 0;
   a {
     margin-left: 3px;
   }
 }
+
 form {
   // background: #0000000f;
   width: 500px;
@@ -216,6 +218,7 @@ button {
 .white-theme {
 
 }
+
 @media screen and (max-width: 768px) {
   form {
     width: 90%;

@@ -1,7 +1,7 @@
 <template>
   <a v-if="!mobile" @click.prevent="home" href="#">
-    <span>SS</span>
-    <span class="colored">Football</span>
+    <span>a</span>
+    <span class="colored">noname</span>
   </a>
 
   <div v-else class="mobile-logotype">

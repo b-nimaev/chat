@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li>
-        <router-link to="/streams">Игры</router-link>
+        <router-link to="/streams">Streams</router-link>
       </li>
     </ul>
   </div>

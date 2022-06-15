@@ -123,7 +123,7 @@ body {
   min-height: 100vh;
   display: flex;
   background-size: cover;
-  background-image: linear-gradient(45deg, #101010, #643258);
+  background-image: linear-gradient(45deg, #100909, #130e16);
   &.dark-theme {
     background-image: linear-gradient(45deg, #000000, #000000);
   }
@@ -141,7 +141,7 @@ body {
   text-align: center;
   padding: 0px;
   margin: 0;
-  background-image: linear-gradient(45deg, #101010, #643258);
+  background-image: linear-gradient(45deg, #00000042, #000000);
   display: flex;
   width: 100%;
   flex-direction: column;

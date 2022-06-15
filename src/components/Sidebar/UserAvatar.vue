@@ -1,10 +1,5 @@
 <template>
-  <div v-if="avatar">
-    <img
-      :src="require(`@${avatar}`)"
-      alt=""
-    />
-  </div>
+  <div></div>
 </template>
 
 <style lang="scss" scoped>
@@ -29,17 +24,6 @@ div {
 <script>
 export default {
   computed: {
-    avatar: function () {
-      let str = this.$store.getters.userinfo
-      return str.avatar.replace("src", "")
-      // require(`@${this.$store.getters.userinfo.avatar.replace("src", '')}`)
-    },
-    picture: function () {
-    //  let temp = 
-      // console.log(temp)
-      // return temp
-      return true
-    }
   },
 };
 </script>
